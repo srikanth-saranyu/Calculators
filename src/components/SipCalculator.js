@@ -287,27 +287,31 @@ export default function SipCalculator() {
             <div className='container'>
                 <h2 className="mc-desc-title">What is an SIP Calculator?</h2>
                 <div className="mc-desc-para">
-                    <p>The Systematic Investment Plan Calculator, or a SIP calculator, is a free online financial tool available on the Angel One website that helps you calculate your returns from SIP investments. You can use it to compare the returns from various SIP investment strategies.</p>
-                    <p>A Mutual Fund SIP calculator helps you estimate the future value of your SIP investments. It takes into account various parameters, including the investment amount, i.e., the regular SIP contributions, the expected rate of return, and the investment tenure. By inputting these details, you can get a sense of how your investments may grow over time. While the final maturity amount of your SIP investment may differ due to various external factors, you can get an approximate understanding of the expected returns.</p>
-                    <p>Once you have a clear idea of the expected returns and commitment required, you can then make a more informed decision about which SIP strategy is most viable for you.</p>
+                    <p>SIP Calculator is a tool which facilitates the investor to calculate the estimated future value of the systematic monthly investments made in the mutual fund scheme. This tool assumes that your expected rate of return is constant over the selected investment period, which may vary with your actual investments made in real time.</p>
                 </div>
                 <h2 className="mc-desc-title">How does SIP Calculator Work?</h2>
 
-                <p>Our SIP calculator online takes three main factors into account:</p>
-                <ol>
-                    <li>Amount of the initial investment (P)</li>
-                    <li>Frequency of the investment (n)</li>
-                    <li>Expected rate of return (r)</li>
-                </ol>
-                <p>By inputting these values, the calculator determines the final invested amount and the estimated returns at the end of a specific period of time.</p>
-                <h2 className="mc-desc-title">How Can an SIP Return Calculator Help You?</h2>
-                <div className="mc-desc-para">
-                    <p>The advantages of using an SIP return calculator are many. Some of them are discussed below:</p>
-                    <ol>
-                        <li><strong>Estimate required time and rate of return -</strong> Using this tool, you can estimate the rate of return required to reach your desired final amount. Additionally, you can also ascertain the time required for your investment to grow adequately.</li>
-                        <li><strong>Choose the right SIP &ndash; </strong>The SIP calculator can swiftly give you multiple variables with which you can assess an SIP scheme. You can use the calculator to compare multiple schemes as per those variables and choose the SIP that is best for you.</li>
-                    </ol>
-                </div>
+                <p>Inputs required by the SIP Calculator:</p>
+                <ul>
+                    <li><strong>Monthly SIP amount: </strong>The investor needs to input the monthly investment amount.</li>
+                    <li><strong>Investment Period: </strong>Frequency of the investment (n)</li>
+                    <li><strong>Expected Rate of Return: </strong>The investor also needs to feed in the expected rate of return that one may expect on an annual basis.</li>
+                </ul>
+                <p><strong>Output:</strong></p>
+                <p>The SIP Calculator would consume the inputs provided by the investor and would give them the estimated Future value of the systematic monthly investments made by the investor and the Expected return the investor may earn over and above the investments made by the investor.</p>
+                <p><strong>SIP Calculator Illustration: </strong></p>
+                <p>Let's assume that an investor wants to invest Rs. 10,000 on a monthly basis for a period of 10 years that will give them an expected rate of return of 12% p.a.</p>
+                <p>The following will be the inputs for using SIP Calculator:</p>
+                <ul>
+                    <li><strong>Monthly SIP amount: </strong>Rs.10,000</li>
+                    <li><strong>Investment Period: </strong>10 years</li>
+                    <li><strong>Expected Rate of Return: </strong>12% p.a.</li>
+                </ul>
+                <p>This will provide the investor with the estimated Future value of investments, Monthly investments made by investor and the expected returns earned:</p>
+                <ul>
+                    <li><strong>Total estimated Future value of investments (A): </strong>Rs.14,40,000</li>
+                    <li><strong>Total Monthly investments made by investors (B): </strong>Rs.442,688</li>
+                </ul>
             </div>
         </div>
     );

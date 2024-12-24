@@ -4,6 +4,7 @@ import './App.css';
 import { Routes, Route, Link } from 'react-router-dom'
 import Home from './components/Home'
 import SipCalculator from './components/SipCalculator';
+import SwpCalculator from './components/SwpCalculator';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sip-calculator" element={<SipCalculator />} />
+        <Route path="/swp-calculator" element={<SwpCalculator />} />
       </Routes>
 
 
