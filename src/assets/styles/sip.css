@@ -1,0 +1,44 @@
+.border-0 {
+    border-width: 100px;
+}
+
+
+.flex-row {
+    height: 300px;
+}
+
+.text-dark {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.custom-width {
+    width: 1000px;
+    margin-left: 60px;
+}
+
+.border-investedOrange {
+    height: 50px;
+    border-width: 8px !important;
+    border-color: rgb(247, 116, 40) !important;
+}
+
+.border-returnsBlue {
+    height: 50px;
+    border-width: 8px !important;
+    border-color: blue !important;
+}
+
+
+input[type="range"]::-moz-range-progress {
+    background-color: red; 
+  }
+  
+  input[type="range"]::-moz-range-track {  
+    background-color: blue;
+  }
+
+  .slider {
+    width: 390px;
+  }

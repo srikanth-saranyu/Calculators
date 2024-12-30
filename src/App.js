@@ -1,21 +1,24 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom'
 import Home from './components/Home'
-import SipCalculator from './components/SipCalculator';
-import SwpCalculator from './components/SwpCalculator';
+import SIPCalculator from './components/SIPCalculator';
+import SWPCalculator from './components/SWPCalculator/index.js';
+import TopUpCalculator from './components/TopUpCalculator/index.js';
+
 
 function App() {
   return (
-    <div>
+    <div className='container'>
       <h2>Angelone Calculators</h2>
       <Link to='/'>Home</Link>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sip-calculator" element={<SipCalculator />} />
-        <Route path="/swp-calculator" element={<SwpCalculator />} />
+        <Route path="/sip-calculator" element={<SIPCalculator />} />
+        <Route path="/swp-calculator" element={<SWPCalculator />} />
+        <Route path="/topup-calculator" element={< TopUpCalculator/>} />
       </Routes>
 
 
