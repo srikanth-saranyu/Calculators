@@ -1,6 +1,39 @@
 import "../../assets/styles/swp.css"
+import React, { useState } from "react";
 
 export default function SWPCalculator() {
+
+    const [principalAmount, setPrincipalAmount] = useState(500000);
+    const [monthlyWithdrawal, setMonthlyWithdrawal] = useState(10000);
+    const [expectedReturns, setExpectedReturns] = useState(12);
+    const [duration, setDuration] = useState(5);
+
+    const calculateInvestmentDetails = () => {
+        const r = expectedReturns / 100; // Convert annual return percentage to decimal
+        const n = 12; // Monthly compounding
+        const t = duration; // Duration in years
+        const monthlyRate = r / n; // Monthly interest rate
+        const totalPeriods = n * t; // Total periods in months
+
+        // Present value of withdrawals
+        const withdrawalPresentValue = monthlyWithdrawal * (1 - Math.pow(1 + monthlyRate, -totalPeriods)) / monthlyRate;
+
+
+        const totalWithdrawal = monthlyWithdrawal * 12 * t;
+
+        // Remaining balance after withdrawals
+        const remainingBalance = principalAmount - withdrawalPresentValue;
+
+        return {
+            investedAmount: principalAmount,
+            totalWithdrawal: totalWithdrawal,
+            remainingBalance: remainingBalance
+        };
+    };
+
+    const { investedAmount, totalWithdrawal, remainingBalance } = calculateInvestmentDetails();
+
+
     return (
         <div className="container">
             <h3 className="custom-width">SWP Calculator</h3>
@@ -14,7 +47,8 @@ export default function SWPCalculator() {
                             <span className="fs-5">₹</span>
                             <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value="5,00,000"
+                                value={principalAmount}
+                                onChange={(e) => setPrincipalAmount(Number(e.target.value))}
                                 style={{ width: "8ch" }} />
 
                         </div>
@@ -26,28 +60,32 @@ export default function SWPCalculator() {
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
                                     <span className="fs-5 text-dark fw-bold">₹</span>
-                                    <span className="fs-6 text ms-1">10000</span>
+                                    <span className="fs-6 text ms-1">{monthlyWithdrawal}</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="500" max="50000" step="1"/>
+                        <input type="range" className="slider" min="500" max="50000" step="1" 
+                        value={monthlyWithdrawal}
+                        onChange={(e) => setMonthlyWithdrawal(Number(e.target.value))}/>
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">₹ 500</p>
                             <p className="text-end text-muted">₹ 50000</p>
                         </div>
                     </div>
 
-                    <div className="w-100 mt-4">
+                    <div className="w-100">
                         <div className="d-flex justify-content-between align-items-center">
                             <label className="text-dark">Withdrawal Period</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">5</span>
+                                    <span className="fs-5 text-dark fw-bold">{duration}</span>
                                     <span className="fs-6 text ms-1">Yrs</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" />
+                        <input type="range" className="slider" min="1" max="30" step="1" 
+                        value={duration}
+                        onChange={(e) => setDuration(Number(e.target.value))}/>
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 Yr</p>
                             <p className="text-end text-muted">30 Yrs</p>
@@ -58,12 +96,14 @@ export default function SWPCalculator() {
                             <label className="text-dark">Expected Rate of Return</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">12</span>
+                                    <span className="fs-5 text-dark fw-bold">{expectedReturns}</span>
                                     <span className="fs-6 text ms-1">%</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1"></input>
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                        value={expectedReturns}
+                        onChange={(e) => setExpectedReturns(Number(e.target.value))}/>
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 %</p>
                             <p className="text-end text-muted">30 %</p>
@@ -74,13 +114,13 @@ export default function SWPCalculator() {
 
 
                 <div className="col-7 d-flex justify-content-center align-item-center border-start">
-                    <div className="text-dark mb-4 pt-4">
-                        <p>Invested Amount:</p>
-                        <p>₹</p>
+                    <div className="text-dark pt-4">
+                        <p className="text-dark">Invested Amount:</p>
+                        <p className="amount">₹{investedAmount.toLocaleString('en-IN')}</p>
                         <p>Total Withdrawal:</p>
-                        <p>₹</p>
+                        <p className="amount">₹{totalWithdrawal.toLocaleString('en-IN')}</p>
                         <p>Final Value:</p>
-                        <p>₹</p>
+                        <p className="amount">₹{Math.round(remainingBalance).toLocaleString('en-IN')}</p>
                     </div>
 
 

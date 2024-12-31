@@ -14,8 +14,15 @@
 }
 
 .custom-width {
-    width: 1000px;
+    width: 1050px;
     margin-left: 60px;
+}
+
+.amount {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 60px;
 }
 
 .border-investedOrange {
@@ -30,6 +37,12 @@
     border-color: blue !important;
 }
 
+.border-returnsgrey {
+    height: 50px;
+    border-width: 8px !important;
+    border-color: rgba(201, 195, 195, 0.776) !important;
+}
+
 
 input[type="range"]::-moz-range-progress {
     background-color: red; 
@@ -40,5 +53,5 @@ input[type="range"]::-moz-range-progress {
   }
 
   .slider {
-    width: 390px;
+    width: 413px;
   }
