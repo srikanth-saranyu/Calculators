@@ -19,7 +19,7 @@ export default function SIPCalculator() {
     };
 
     useEffect(() => {
-        
+
         const totalInvested = monthlyInvestment * investmentPeriod * 12;
         setInvestedAmount(totalInvested);
 

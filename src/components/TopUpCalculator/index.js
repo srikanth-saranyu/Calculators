@@ -1,7 +1,47 @@
+import React, { useState, useEffect } from "react";
 import "../../assets/styles/sip.css"
 import TopUpChart from "./chart"
 
 export default function TopUpCalculator() {
+
+    const [monthlyInvestment, setMonthlyInvestment] = useState(10000);
+    const [investmentPeriod, setInvestmentPeriod] = useState(10);
+    const [annualTopUp, setAnnualTopUp] = useState(10);
+    const [expectedReturn, setExpectedReturn] = useState(12);
+
+    const [totalValue, setTotalValue] = useState(0);
+    const [totalInvested, setTotalInvested] = useState(0);
+    const [estimatedReturns, setEstimatedReturns] = useState(0);
+
+    useEffect(() => {
+
+        calculateInvestment();
+        // eslint-disable-next-line
+    }, [monthlyInvestment, investmentPeriod, annualTopUp, expectedReturn]);
+
+
+    const calculateInvestment = () => {
+        let investedAmount = 0;
+        let totalValueAfterCompounding = 0;
+        let monthlyInvestmentCurrent = monthlyInvestment;
+        let annualInvestment = monthlyInvestment * 12;
+
+        for (let year = 1; year <= investmentPeriod; year++) {
+            investedAmount += annualInvestment;
+
+            totalValueAfterCompounding += annualInvestment * Math.pow(1 + expectedReturn / 100, investmentPeriod - year);
+
+            monthlyInvestmentCurrent *= (1 + annualTopUp / 100);
+            annualInvestment = monthlyInvestmentCurrent * 12;
+        }
+
+        const returns = totalValueAfterCompounding - investedAmount;
+
+        setTotalInvested(investedAmount);
+        setEstimatedReturns(returns);
+        setTotalValue(totalValueAfterCompounding);
+    };
+
     return (
         <div className="container">
             <h3 className="custom-width">SIP Top Up Calculator</h3>
@@ -15,7 +55,8 @@ export default function TopUpCalculator() {
                             <span className="fs-5">₹</span>
                             <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value="5,000"
+                                value={monthlyInvestment}
+                                onChange={(e) => setMonthlyInvestment(e.target.value)}
                                 style={{ width: "8ch" }} />
 
                         </div>
@@ -26,12 +67,14 @@ export default function TopUpCalculator() {
                             <label className="text-dark">Select Investment Period</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">5</span>
+                                    <span className="fs-5 text-dark fw-bold">{investmentPeriod}</span>
                                     <span className="fs-6 text ms-1">Yrs</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3" />
+                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3"
+                            value={investmentPeriod}
+                            onChange={(e) => setInvestmentPeriod(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 Yr</p>
                             <p className="text-end text-muted">30 Yrs</p>
@@ -42,12 +85,14 @@ export default function TopUpCalculator() {
                             <label className="text-dark">Annual Top Up</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">12</span>
+                                    <span className="fs-5 text-dark fw-bold">{annualTopUp}</span>
                                     <span className="fs-6 text ms-1">%</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3"></input>
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={annualTopUp}
+                            onChange={(e) => setAnnualTopUp(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 %</p>
                             <p className="text-end text-muted">30 %</p>
@@ -59,12 +104,14 @@ export default function TopUpCalculator() {
                             <label className="text-dark">Expected Rate of Return</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">12</span>
+                                    <span className="fs-5 text-dark fw-bold">{expectedReturn}</span>
                                     <span className="fs-6 text ms-1">%</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3"></input>
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={expectedReturn}
+                            onChange={(e) => setExpectedReturn(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 %</p>
                             <p className="text-end text-muted">30 %</p>
@@ -76,22 +123,22 @@ export default function TopUpCalculator() {
 
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
-                        <p>The total value of your investment after<span className="selected-years">&nbsp;{5} years</span> will be</p>
-                        <span>₹</span>
+                        <p className="text-dark">The total value of your investment after<b><span className="selected-years">&nbsp;{investmentPeriod} years</span></b> will be</p>
+                        <span className="amount">₹ {Math.round(totalValue).toLocaleString('en-IN')}</span>
                     </div>
                     <div className="d-flex flex-row justify-content-center">
 
                         <div className="d-flex justify-content-center align-items-center">
-                            <TopUpChart />
+                            <TopUpChart investedAmount={totalInvested} estimatedReturns={estimatedReturns} />
                         </div>
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
                                 <p className="text-muted ms-2 mb-0">Invested Amount</p>
-                                <p className="fs-5 fw-semibold ms-2">₹3,00,000</p>
+                                <p className="fs-5 fw-semibold ms-2">₹ {Math.round(totalInvested).toLocaleString('en-IN')}</p>
                             </div>
                             <div className="border-start border-5 border-returnsBlue mt-2">
                                 <p className="text-muted ms-2 mb-0">Est. Returns</p>
-                                <p className="fs-5 fw-semibold ms-2">₹1,12,432</p>
+                                <p className="fs-5 fw-semibold ms-2">₹ {Math.round(estimatedReturns).toLocaleString('en-IN')}</p>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,26 @@
+import React, { useState } from "react";
 import "../../assets/styles/sip.css"
 import FDChart from "./chart"
 
 export default function FDCalculator() {
+
+    const [principal, setPrincipal] = useState(100000);
+    const [interestRate, setInterestRate] = useState(7);
+    const [duration, setDuration] = useState(5);
+
+    const calculateMaturity = () => {
+        const r = interestRate / 100;
+        const n = 4;
+
+        // Maturity Amount = p * (1 + r/n) ^ (nt)
+        const maturityAmount = principal * Math.pow(1 + (r / n), n * duration);
+        return maturityAmount;
+    };
+
+    const maturityAmount = calculateMaturity();
+    const estimatedReturns = maturityAmount - principal;
+
+
     return (
         <div className="container">
             <h3 className="custom-width">FD Calculator</h3>
@@ -15,7 +34,8 @@ export default function FDCalculator() {
                             <span className="fs-5">₹</span>
                             <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value="1,00,000"
+                                value={principal}
+                                onChange={(e) => setPrincipal(Number(e.target.value))}
                                 style={{ width: "8ch" }} />
 
                         </div>
@@ -26,12 +46,14 @@ export default function FDCalculator() {
                             <label className="text-dark">Select Duration</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">5</span>
+                                    <span className="fs-5 text-dark fw-bold">{duration}</span>
                                     <span className="fs-6 text ms-1">Yrs</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3" />
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={duration}
+                            onChange={(e) => setDuration(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 Yr</p>
                             <p className="text-end text-muted">30 Yrs</p>
@@ -42,12 +64,14 @@ export default function FDCalculator() {
                             <label className="text-dark">Interest Rate</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">7</span>
+                                    <span className="fs-5 text-dark fw-bold">{interestRate}</span>
                                     <span className="fs-6 text ms-1">%</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="10" step="0.5" id="customRange3"></input>
+                        <input type="range" className="slider" min="1" max="10" step="0.5"
+                            value={interestRate}
+                            onChange={(e) => setInterestRate(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 %</p>
                             <p className="text-end text-muted">10 %</p>
@@ -59,22 +83,22 @@ export default function FDCalculator() {
 
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
-                        <p>The total value of your investment after<span className="selected-years">&nbsp;{5} years</span> will be</p>
-                        <span>₹</span>
+                        <p className="text-dark">The total value of your investment after<b><span className="selected-years">&nbsp;{duration} years</span></b> will be</p>
+                        <span className="amount">₹ {Math.round(maturityAmount).toLocaleString('en-IN')}</span>
                     </div>
                     <div className="d-flex flex-row justify-content-center">
 
                         <div className="d-flex justify-content-center align-items-center">
-                            <FDChart />
+                            <FDChart principal={principal} estimatedReturns={estimatedReturns}/>
                         </div>
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
                                 <p className="text-muted ms-2 mb-0">Invested Amount</p>
-                                <p className="fs-5 fw-semibold ms-2">₹3,00,000</p>
+                                <p className="fs-5 fw-semibold ms-2">₹ {principal.toLocaleString('en-IN')}</p>
                             </div>
                             <div className="border-start border-5 border-returnsBlue mt-2">
                                 <p className="text-muted ms-2 mb-0">Est. Returns</p>
-                                <p className="fs-5 fw-semibold ms-2">₹1,12,432</p>
+                                <p className="fs-5 fw-semibold ms-2">₹ {Math.round(estimatedReturns).toLocaleString('en-IN')}</p>
                             </div>
                         </div>
                     </div>

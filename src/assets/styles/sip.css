@@ -14,9 +14,13 @@
 }
 
 .custom-width {
-    width: 1050px;
-    margin-left: 60px;
+    width: 1150px;
+    margin-left: 10px;
 }
+
+/* * {
+    font-family: 'Barlow', sans-serif !important;
+} */
 
 .amount {
     font-style: normal;

@@ -3,36 +3,45 @@ import React, { useState } from "react";
 
 export default function SWPCalculator() {
 
-    const [principalAmount, setPrincipalAmount] = useState(500000);
-    const [monthlyWithdrawal, setMonthlyWithdrawal] = useState(10000);
-    const [expectedReturns, setExpectedReturns] = useState(12);
-    const [duration, setDuration] = useState(5);
+    const [principalAmount, setPrincipalAmount] = useState(500000); // ₹1,00,000 initial investment
+  const [monthlyWithdrawal, setMonthlyWithdrawal] = useState(10000); // ₹5,000 monthly withdrawal
+  const [expectedReturns, setExpectedReturns] = useState(8); // Annual rate of return
+  const [duration, setDuration] = useState(5); // Duration in years (12 months)
 
-    const calculateInvestmentDetails = () => {
-        const r = expectedReturns / 100; // Convert annual return percentage to decimal
-        const n = 12; // Monthly compounding
-        const t = duration; // Duration in years
-        const monthlyRate = r / n; // Monthly interest rate
-        const totalPeriods = n * t; // Total periods in months
+  const calculateInvestmentDetails = () => {
+    const r = expectedReturns / 100; // Convert annual return percentage to decimal
+    const n = 12; // Monthly compounding periods
+    const t = duration; // Duration in years
+    const monthlyRate = r / n; // Monthly interest rate
+    const totalPeriods = n * t; // Total periods in months
 
-        // Present value of withdrawals
-        const withdrawalPresentValue = monthlyWithdrawal * (1 - Math.pow(1 + monthlyRate, -totalPeriods)) / monthlyRate;
+    let remainingBalance = principalAmount;
+    let totalWithdrawn = 0;
 
+    // Iterate month by month to calculate the remaining balance
+    for (let month = 1; month <= totalPeriods; month++) {
+      // Deduct monthly withdrawal
+      remainingBalance -= monthlyWithdrawal;
+      remainingBalance += remainingBalance * monthlyRate;
+      // Track total withdrawals
+      totalWithdrawn += monthlyWithdrawal;
+    }
 
-        const totalWithdrawal = monthlyWithdrawal * 12 * t;
+    // The final corpus value at the end of the period
+    const finalValue = remainingBalance;
 
-        // Remaining balance after withdrawals
-        const remainingBalance = principalAmount - withdrawalPresentValue;
+    // Calculate total return: (final value + total withdrawn) - initial investment
+    const totalReturn = finalValue + totalWithdrawn - principalAmount;
 
-        return {
-            investedAmount: principalAmount,
-            totalWithdrawal: totalWithdrawal,
-            remainingBalance: remainingBalance
-        };
+    return {
+      investedAmount: principalAmount,
+      totalWithdrawal: totalWithdrawn,
+      finalValue: finalValue,
+      totalReturn: totalReturn
     };
+  };
 
-    const { investedAmount, totalWithdrawal, remainingBalance } = calculateInvestmentDetails();
-
+  const { investedAmount, totalWithdrawal, finalValue } = calculateInvestmentDetails();
 
     return (
         <div className="container">
@@ -64,9 +73,9 @@ export default function SWPCalculator() {
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="500" max="50000" step="1" 
-                        value={monthlyWithdrawal}
-                        onChange={(e) => setMonthlyWithdrawal(Number(e.target.value))}/>
+                        <input type="range" className="slider" min="500" max="50000" step="1"
+                            value={monthlyWithdrawal}
+                            onChange={(e) => setMonthlyWithdrawal(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">₹ 500</p>
                             <p className="text-end text-muted">₹ 50000</p>
@@ -83,9 +92,9 @@ export default function SWPCalculator() {
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" 
-                        value={duration}
-                        onChange={(e) => setDuration(Number(e.target.value))}/>
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={duration}
+                            onChange={(e) => setDuration(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 Yr</p>
                             <p className="text-end text-muted">30 Yrs</p>
@@ -102,8 +111,8 @@ export default function SWPCalculator() {
                             </div>
                         </div>
                         <input type="range" className="slider" min="1" max="30" step="1"
-                        value={expectedReturns}
-                        onChange={(e) => setExpectedReturns(Number(e.target.value))}/>
+                            value={expectedReturns}
+                            onChange={(e) => setExpectedReturns(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 %</p>
                             <p className="text-end text-muted">30 %</p>
@@ -120,7 +129,7 @@ export default function SWPCalculator() {
                         <p>Total Withdrawal:</p>
                         <p className="amount">₹{totalWithdrawal.toLocaleString('en-IN')}</p>
                         <p>Final Value:</p>
-                        <p className="amount">₹{Math.round(remainingBalance).toLocaleString('en-IN')}</p>
+                        <p className="amount">₹{Math.round(finalValue).toLocaleString('en-IN')}</p>
                     </div>
 
 
