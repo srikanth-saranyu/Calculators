@@ -1,33 +1,50 @@
+import React, { useState } from "react";
 import "../../assets/styles/sip.css"
 import CAGRChart from "./chart"
 
 export default function CAGRCalculator() {
+
+    const [initialInvestment, setInitialInvestment] = useState(10000);
+    const [finalValue, setFinalValue] = useState(25000);
+    const [duration, setDuration] = useState(5);
+
+    const calculateCAGR = (startValue, endValue, years) => {
+        if (startValue <= 0 || endValue <= 0 || years <= 0) return 0;
+        return ((Math.pow(endValue / startValue, 1 / years) - 1) * 100).toFixed(2);
+    };
+
+    const cagr = calculateCAGR(initialInvestment, finalValue, duration);
+
+
     return (
         <div className="container">
             <h3 className="custom-width">CAGR Calculator</h3>
-            <div className="row border rounded custom-width shadow">
+            <p className="custom-width">Compounded Annual Growth Rate (CAGR) calculator allows you to ascertain the rate of growth in an investment over a period of time.</p>
+            <div className="row border rounded custom-width">
                 <div className="col-5">
                     <h5 className="pt-4 fw-bold">Returns Estimator</h5>
-                    <p className="small text-muted">Estimation is based on the past performance</p>
-                    <div className="border border-2 border-primary rounded mt-4">
-                        <label className="d-block text-center text-dark mb-2">Initial Investment</label>
+                    <p className="medium text-muted">Estimation is based on the past performance</p>
+                    <div className="border border-2 border-primary rounded input-field">
+                        <label className="d-block text-center">INITIAL INVESTMENT</label>
                         <div className="ms-4 d-flex justify-content-center align-items-start">
-                            <span className="fs-5">₹</span>
-                            <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
+                            <span className="fs-6">₹</span>
+                            <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value="10,000"
+                                value={initialInvestment}
+                                onChange={(e) => setInitialInvestment(e.target.value)}
                                 style={{ width: "8ch" }} />
 
                         </div>
 
                     </div>
-                    <div className="border border-2 border-primary rounded mt-4">
-                        <label className="d-block text-center text-dark mb-2">Final Value Cost</label>
+                    <div className="border border-2 border-primary rounded mt-4 input-field">
+                        <label className="d-block text-center">FINAL VALUE COST</label>
                         <div className="ms-4 d-flex justify-content-center align-items-start">
-                            <span className="fs-5">₹</span>
-                            <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
+                            <span className="fs-6">₹</span>
+                            <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value="25,000"
+                                value={finalValue}
+                                onChange={(e) => setFinalValue(e.target.value)}
                                 style={{ width: "8ch" }} />
 
                         </div>
@@ -36,14 +53,16 @@ export default function CAGRCalculator() {
                     <div className="w-100 mt-4">
                         <div className="d-flex justify-content-between align-items-center">
                             <label className="text-dark">Duration of Investment</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
+                            <div className="d-flex align-items-baseline border-bottom border-1 mb-1 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">5</span>
-                                    <span className="fs-6 text ms-1">Yrs</span>
+                                    <span className="fs-3 text-dark fw-bold">{duration}</span>
+                                    <span className="fs-6 text ms-2">Yrs</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3" />
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={duration}
+                            onChange={(e) => setDuration(e.target.value)} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 Yr</p>
                             <p className="text-end text-muted">30 Yrs</p>
@@ -56,28 +75,28 @@ export default function CAGRCalculator() {
 
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
-                        <p>CAGR(%)</p>
-                        <span>%</span>
+                        <p className="text-dark mb-0">CAGR(%)</p>
+                        <span className="amount">{cagr}%</span>
                     </div>
                     <div className="d-flex flex-row justify-content-center">
 
                         <div className="d-flex justify-content-center align-items-center">
-                            <CAGRChart />
+                            <CAGRChart initialInvestment={initialInvestment} finalValue={finalValue} />
                         </div>
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
                                 <p className="text-muted ms-2 mb-0">Initial Value Amount</p>
-                                <p className="fs-5 fw-semibold ms-2">₹10,000</p>
+                                <p className="fs-5 fw-semibold ms-2">₹ {initialInvestment.toLocaleString('en-IN')}</p>
                             </div>
                             <div className="border-start border-5 border-returnsBlue mt-2">
                                 <p className="text-muted ms-2 mb-0">Final Value</p>
-                                <p className="fs-5 fw-semibold ms-2">₹25,000</p>
+                                <p className="fs-5 fw-semibold ms-2">₹ {finalValue.toLocaleString('en-IN')}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='container'>
+            <div className='container custom-width'>
                 <h2 className="mc-desc-title">What is a CAGR Calculator?</h2>
                 <div className="mc-desc-para">
                     <p>As an investor, you have to make smart decisions about your money. A CAGR calculator can help you achieve that goal. The CAGR calculator is a free calculation tool available online on the Angel One website.</p>

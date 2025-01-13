@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../../assets/styles/sip.css"
-import LumpsumChart from "./chart"
+import DoughnutChart from '../DoughnutChart'
+import CalculatorInputs from '../CalculatorInputs'
 
 export default function LumpsumCalculator() {
 
@@ -17,67 +18,29 @@ export default function LumpsumCalculator() {
     };
 
     const totalAmount = calculateTotalAmount(lumpsumInvestment, rateOfReturn, compoundsPerYear, duration);
-    const totalInvested = lumpsumInvestment;
+    const totalInvested = lumpsumInvestment ? lumpsumInvestment : 0;
     const returns = totalAmount - totalInvested;
 
     return (
         <div className="container">
             <h3 className="custom-width">Lumpsum Calculator</h3>
-            <div className="row border rounded custom-width shadow">
-                <div className="col-5">
-                    <h5 className="pt-4 fw-bold">Returns Estimator</h5>
-                    <p className="small text-muted">Estimation is based on the past performance</p>
-                    <div className="border border-2 border-primary rounded mt-4">
-                        <label className="d-block text-center text-dark mb-2">Enter Amount</label>
-                        <div className="ms-4 d-flex justify-content-center align-items-start">
-                            <span className="fs-5">₹</span>
-                            <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
-                                placeholder="0"
-                                value={lumpsumInvestment}
-                                onChange={(e) => setLumpsumInvestment(Number(e.target.value))}
-                                style={{ width: "8ch" }} />
-
-                        </div>
-
-                    </div>
-                    <div className="w-100 mt-4">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Select Duration</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{duration}</span>
-                                    <span className="fs-6 text ms-1">Yrs</span>
-                                </p>
-                            </div>
-                        </div>
-                        <input type="range" className="slider" min="1" max="30" step="1"
-                            value={duration}
-                            onChange={(e) => setDuration(e.target.value)} />
-                        <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 Yr</p>
-                            <p className="text-end text-muted">30 Yrs</p>
-                        </div>
-                    </div>
-                    <div className="w-100">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Expected Rate of Return</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{rateOfReturn}</span>
-                                    <span className="fs-6 text ms-1">%</span>
-                                </p>
-                            </div>
-                        </div>
-                        <input type="range" className="slider" min="1" max="30" step="1"
-                            value={rateOfReturn}
-                            onChange={(e) => setRateOfReturn(e.target.value)} />
-                        <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 %</p>
-                            <p className="text-end text-muted">30 %</p>
-                        </div>
-                    </div>
-                </div>
-
+            <p className="custom-width">If you are considering making a one-time investment in a mutual fund, you can estimate the potential returns it can generate using a lumpsum calculator.</p>
+            <div className="row border rounded custom-width">
+                <CalculatorInputs
+                    amountLabel="ENTER AMOUNT"
+                    amountValue={lumpsumInvestment}
+                    onAmountChange={setLumpsumInvestment}
+                    durationLabel="Select Duration"
+                    durationValue={duration}
+                    onDurationChange={setDuration}
+                    rateLabel="Expected Rate of Return"
+                    rateValue={rateOfReturn}
+                    onRateChange={setRateOfReturn}
+                    minDuration={1}
+                    maxDuration={30}
+                    minRate={1}
+                    maxRate={30}
+                />
 
 
                 <div className="col-7 d-flex flex-column border-start">
@@ -88,12 +51,12 @@ export default function LumpsumCalculator() {
                     <div className="d-flex flex-row justify-content-center">
 
                         <div className="d-flex justify-content-center align-items-center">
-                            <LumpsumChart investedAmount={totalInvested} returns={returns} />
+                            <DoughnutChart investedAmount={totalInvested} estimatedReturns={returns} />
                         </div>
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
                                 <p className="text-muted ms-2 mb-0">Invested Amount</p>
-                                <p className="fs-5 fw-semibold ms-2">₹ {totalInvested.toLocaleString('en-IN')}</p>
+                                <p className="fs-5 fw-semibold ms-2">₹ {Math.round(totalInvested).toLocaleString('en-IN')}</p>
                             </div>
                             <div className="border-start border-5 border-returnsBlue mt-2">
                                 <p className="text-muted ms-2 mb-0">Est. Returns</p>
@@ -103,7 +66,7 @@ export default function LumpsumCalculator() {
                     </div>
                 </div>
             </div>
-            <div className='container'>
+            <div className='container custom-width'>
                 <h2 className="mc-desc-title">What Is Lumpsum Investment?</h2>
                 <div className="mc-desc-para">
                     <p>It is a one-time investment that allows you to put your money in a mutual fund, allowing it to grow and compound over time. A lumpsum investment is one of the best ways to maximise your potential returns in a mutual fund and secure your financial future.</p>

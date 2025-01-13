@@ -1,12 +1,33 @@
+import { useState } from 'react';
 import "../../assets/styles/sip.css"
-import MFRChart from "./chart"
+import DoughnutChart from '../DoughnutChart'
+import CalculatorInputs from '../CalculatorInputs';
 
 export default function MFRCalculator() {
+
+    // const [investmentAmount, setInvestmentAmount] = useState(100000);
+    // const [rateOfReturn, setRateOfReturn] = useState(6.5);
+    // const [investmentDuration, setInvestmentDuration] = useState(5);
+    const [monthlyInvestment, setMonthlyInvestment] = useState(100000);
+    const [interestRate, setInterestRate] = useState(6.5);
+    const [duration, setDuration] = useState(5);
+
+    // Calculate Lump Sum Returns
+    const calculateLumpsumReturns = () => {
+        const r = interestRate / 100;
+        const n = duration;
+        return monthlyInvestment * Math.pow(1 + r, n);
+    };
+
+
+    const totalValue = calculateLumpsumReturns();
+    const estimatedReturns = totalValue - monthlyInvestment;
+
     return (
         <div className="container">
             <h3 className="custom-width">Mutual Fund Returns Calculator</h3>
-            <div className="row border rounded custom-width shadow">
-                <div className="col-5">
+            <div className="row border rounded custom-width">
+                {/* <div className="col-5">
                     <h5 className="pt-4 fw-bold">Returns Estimator</h5>
                     <p className="small text-muted">Estimation is based on the past performance</p>
                     <div className="border border-2 border-primary rounded mt-4">
@@ -15,7 +36,8 @@ export default function MFRCalculator() {
                             <span className="fs-5">₹</span>
                             <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value="1,00,000"
+                                value={investmentAmount}
+                                onChange={(e) => setInvestmentAmount(e.target.value)}
                                 style={{ width: "8ch" }} />
 
                         </div>
@@ -26,12 +48,14 @@ export default function MFRCalculator() {
                             <label className="text-dark">Expected Rate of Return</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">6.5</span>
+                                    <span className="fs-5 text-dark fw-bold">{rateOfReturn}</span>
                                     <span className="fs-6 text ms-1">%</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3"></input>
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={rateOfReturn}
+                            onChange={(e) => setRateOfReturn(e.target.value)} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 %</p>
                             <p className="text-end text-muted">15 %</p>
@@ -42,49 +66,64 @@ export default function MFRCalculator() {
                             <label className="text-dark">Select Duration</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">5</span>
+                                    <span className="fs-5 text-dark fw-bold">{investmentDuration}</span>
                                     <span className="fs-6 text ms-1">Yrs</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3" />
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={investmentDuration}
+                            onChange={(e) => setInvestmentDuration(e.target.value)} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 Yr</p>
                             <p className="text-end text-muted">30 Yrs</p>
                         </div>
                     </div>
-
-                </div>
-
+                </div> */}
+                <CalculatorInputs
+                    amountLabel="ENTER AMOUNT"
+                    amountValue={monthlyInvestment}
+                    onAmountChange={setMonthlyInvestment}
+                    durationLabel="Select Duration"
+                    durationValue={duration}
+                    onDurationChange={setDuration}
+                    rateLabel="Expected Rate of Return"
+                    rateValue={interestRate}
+                    onRateChange={setInterestRate}
+                    minDuration={1}
+                    maxDuration={30}
+                    minRate={1}
+                    maxRate={15}
+                />
 
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
-                        <p>The total value of your investment after<span className="selected-years">&nbsp;{5} years</span> will be</p>
-                        <span>₹</span>
+                        <p className="text-dark">The future value of your investment after<b><span className="selected-years">&nbsp;{duration} years</span></b> will be</p>
+                        <span className="amount">₹ {Math.round(totalValue).toLocaleString('en-IN')}</span>
                     </div>
                     <div className="d-flex flex-row justify-content-center">
 
                         <div className="d-flex justify-content-center align-items-center">
-                            <MFRChart />
+                            <DoughnutChart investedAmount={monthlyInvestment} estimatedReturns={estimatedReturns} />
                         </div>
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
                                 <p className="text-muted ms-2 mb-0">Invested Amount</p>
-                                <p className="fs-5 fw-semibold ms-2">₹3,00,000</p>
+                                <p className="fs-5 fw-semibold ms-2">₹{monthlyInvestment.toLocaleString('en-IN')}</p>
                             </div>
                             <div className="border-start border-5 border-returnsBlue mt-2">
                                 <p className="text-muted ms-2 mb-0">Est. Returns</p>
-                                <p className="fs-5 fw-semibold ms-2">₹1,12,432</p>
+                                <p className="fs-5 fw-semibold ms-2">₹{Math.round(estimatedReturns).toLocaleString('en-IN')}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='container'>
+            <div className='container custom-width'>
                 <h2 className="mc-desc-title">What is a Mutual Fund Returns Calculator?</h2>
                 <div className="mc-desc-para">
                     <p>An online mutual funds returns calculator is a tool that helps investors estimate the potential returns on their mutual fund investments. It allows investors to input parameters such as the investment amount, investment duration, expected rate of return, and any additional contributions. The calculator then provides an estimate of the future value of the investment based on the given inputs.</p>
-                    
+
                 </div>
                 <h2 className="mc-desc-title">Mutual Fund Returns Calculator Formula</h2>
 

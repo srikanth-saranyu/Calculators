@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/styles/sip.css"
-import TopUpChart from "./chart"
+import DoughnutChart from '../DoughnutChart'
 
 export default function TopUpCalculator() {
 
@@ -45,15 +45,15 @@ export default function TopUpCalculator() {
     return (
         <div className="container">
             <h3 className="custom-width">SIP Top Up Calculator</h3>
-            <div className="row border rounded custom-width shadow">
+            <div className="row border rounded custom-width">
                 <div className="col-5">
                     <h5 className="pt-4 fw-bold">Returns Estimator</h5>
-                    <p className="small text-muted">Estimation is based on the past performance</p>
-                    <div className="border border-2 border-primary rounded mt-4">
-                        <label className="d-block text-center text-dark mb-2">Monthly Investment</label>
-                        <div className="ms-4 d-flex justify-content-center align-items-start">
-                            <span className="fs-5">₹</span>
-                            <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
+                    <p className="medium text-muted">Estimation is based on the past performance</p>
+                    <div className="border border-2 border-primary rounded input-field">
+                        <label className="d-block text-center">MONTHLY INVESTMENT</label>
+                        <div className="ms-5 d-flex justify-content-center align-items-start">
+                            <span className="fs-6">₹</span>
+                            <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
                                 value={monthlyInvestment}
                                 onChange={(e) => setMonthlyInvestment(e.target.value)}
@@ -65,14 +65,14 @@ export default function TopUpCalculator() {
                     <div className="w-100 mt-4">
                         <div className="d-flex justify-content-between align-items-center">
                             <label className="text-dark">Select Investment Period</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
+                            <div className="d-flex align-items-baseline border-bottom border-1 mb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{investmentPeriod}</span>
-                                    <span className="fs-6 text ms-1">Yrs</span>
+                                    <span className="fs-3 text-dark fw-bold">{investmentPeriod}</span>
+                                    <span className="fs-6 text ms-2">Yrs</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3"
+                        <input type="range" className="slider" min="1" max="30" step="1"
                             value={investmentPeriod}
                             onChange={(e) => setInvestmentPeriod(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
@@ -83,10 +83,10 @@ export default function TopUpCalculator() {
                     <div className="w-100">
                         <div className="d-flex justify-content-between align-items-center">
                             <label className="text-dark">Annual Top Up</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{annualTopUp}</span>
-                                    <span className="fs-6 text ms-1">%</span>
+                            <div className="d-flex align-items-baseline border-bottom border-1 mb-1 pb-1">
+                                <p className="d-flex align-items-baseline text-center mb-0">
+                                    <span className="fs-3 text-dark fw-bold">{annualTopUp}</span>
+                                    <span className="fs-6 text ms-3">%</span>
                                 </p>
                             </div>
                         </div>
@@ -94,18 +94,18 @@ export default function TopUpCalculator() {
                             value={annualTopUp}
                             onChange={(e) => setAnnualTopUp(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 %</p>
-                            <p className="text-end text-muted">30 %</p>
+                            <p className="text-start text-muted">1%</p>
+                            <p className="text-end text-muted">30%</p>
                         </div>
                     </div>
 
                     <div className="w-100">
                         <div className="d-flex justify-content-between align-items-center">
                             <label className="text-dark">Expected Rate of Return</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{expectedReturn}</span>
-                                    <span className="fs-6 text ms-1">%</span>
+                            <div className="d-flex align-items-baseline border-bottom border-1 mb-1 pb-1">
+                                <p className="d-flex align-items-baseline text-center mb-0">
+                                    <span className="fs-3 text-dark fw-bold">{expectedReturn}</span>
+                                    <span className="fs-6 text ms-3">%</span>
                                 </p>
                             </div>
                         </div>
@@ -113,12 +113,11 @@ export default function TopUpCalculator() {
                             value={expectedReturn}
                             onChange={(e) => setExpectedReturn(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 %</p>
-                            <p className="text-end text-muted">30 %</p>
+                            <p className="text-start text-muted">1%</p>
+                            <p className="text-end text-muted">30%</p>
                         </div>
                     </div>
                 </div>
-
 
 
                 <div className="col-7 d-flex flex-column border-start">
@@ -129,7 +128,7 @@ export default function TopUpCalculator() {
                     <div className="d-flex flex-row justify-content-center">
 
                         <div className="d-flex justify-content-center align-items-center">
-                            <TopUpChart investedAmount={totalInvested} estimatedReturns={estimatedReturns} />
+                            <DoughnutChart investedAmount={totalInvested} estimatedReturns={estimatedReturns} />
                         </div>
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
@@ -144,7 +143,7 @@ export default function TopUpCalculator() {
                     </div>
                 </div>
             </div>
-            <div className='container'>
+            <div className='container custom-width'>
                 <h2 className="mc-desc-title">What is a SIP Top Up calculator?</h2>
                 <div className="mc-desc-para">
                     <p>SIP Top Up Calculator tool is useful for investors who would like to increase their investment income along with their growth in income, spending and cost of living. This tool will enable the investor to understand how they can stimulate growth in their investment income by gradually growing their SIPs on a periodic basis. The tool assumes that your expected rate of return is constant over the selected period, which may vary with your actual investments made in real time.</p>

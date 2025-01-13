@@ -1,12 +1,30 @@
+import React, { useState, useEffect } from 'react';
 import "../../assets/styles/sip.css"
-import InflationChart from "./chart"
+import DoughnutChart from '../DoughnutChart'
+import CalculatorInputs from '../CalculatorInputs'
 
 export default function InflationCalculator() {
+
+    const [initialAmount, setInitialAmount] = useState(100000);
+    const [inflationRate, setInflationRate] = useState(6);
+    const [years, setYears] = useState(5);
+    const [futureCost, setFutureCost] = useState(0);
+
+    function calculateFutureCost(currentCost, inflationRate, years) {
+        const i = inflationRate / 100;
+        return currentCost * Math.pow(1 + i, years);
+    }
+
+    useEffect(() => {
+        setFutureCost(calculateFutureCost(initialAmount, inflationRate, years));
+    }, [initialAmount, inflationRate, years]);
+
+
     return (
         <div className="container">
             <h3 className="custom-width">Inflation Calculator</h3>
-            <div className="row border rounded custom-width shadow">
-                <div className="col-5">
+            <div className="row border rounded custom-width">
+                {/* <div className="col-5">
                     <h5 className="pt-4 fw-bold">Returns Estimator</h5>
                     <p className="small text-muted">Estimation is based on the past performance</p>
                     <div className="border border-2 border-primary rounded mt-4">
@@ -15,23 +33,25 @@ export default function InflationCalculator() {
                             <span className="fs-5">₹</span>
                             <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value="1,00,000"
+                                value={initialAmount.toLocaleString()}
+                                onChange={(e) => setInitialAmount(Number(e.target.value))}
                                 style={{ width: "8ch" }} />
-
                         </div>
-
                     </div>
+
                     <div className="w-100 mt-4">
                         <div className="d-flex justify-content-between align-items-center">
                             <label className="text-dark">Inflation Rate</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">6</span>
+                                    <span className="fs-5 text-dark fw-bold">{inflationRate}</span>
                                     <span className="fs-6 text ms-1">%</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3"></input>
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={inflationRate}
+                            onChange={(e) => setInflationRate(parseInt(e.target.value, 10))} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 %</p>
                             <p className="text-end text-muted">15 %</p>
@@ -42,45 +62,60 @@ export default function InflationCalculator() {
                             <label className="text-dark">Number of Years</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">5</span>
+                                    <span className="fs-5 text-dark fw-bold">{years}</span>
                                     <span className="fs-6 text ms-1">Yrs</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3" />
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={years}
+                            onChange={(e) => setYears(Number(e.target.value, 10))} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 Yr</p>
                             <p className="text-end text-muted">30 Yrs</p>
                         </div>
                     </div>
-
-                </div>
-
+                </div> */}
+                <CalculatorInputs
+                    amountLabel="INITIAL AMOUNT"
+                    amountValue={initialAmount}
+                    onAmountChange={setInitialAmount}
+                    durationLabel="Select Duration"
+                    durationValue={years}
+                    onDurationChange={setYears}
+                    rateLabel="Inflation Rate"
+                    rateValue={inflationRate}
+                    onRateChange={setInflationRate}
+                    minDuration={1}
+                    maxDuration={30}
+                    minRate={1}
+                    maxRate={15}
+                />
 
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
-                        <p>The total value of your investment after<span className="selected-years">&nbsp;{5} years</span> will be</p>
-                        <span>₹</span>
+                        <p className="text-dark">The total value of your investment after<b><span className="selected-years">&nbsp;{years} years</span></b> will be</p>
+                        <span className="amount">₹ {Math.round(futureCost).toLocaleString('en-IN')}</span>
                     </div>
                     <div className="d-flex flex-row justify-content-center">
-
                         <div className="d-flex justify-content-center align-items-center">
-                            <InflationChart />
+                            <DoughnutChart investedAmount={initialAmount} estimatedReturns={futureCost - initialAmount} />
                         </div>
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
                                 <p className="text-muted ms-2 mb-0">Initial Amount</p>
-                                <p className="fs-5 fw-semibold ms-2">₹3,00,000</p>
+                                <p className="fs-5 fw-semibold ms-2">₹{initialAmount.toLocaleString('en-IN')}</p>
                             </div>
                             <div className="border-start border-5 border-returnsBlue mt-2">
                                 <p className="text-muted ms-2 mb-0">Adjusted Amount</p>
-                                <p className="fs-5 fw-semibold ms-2">₹1,12,432</p>
+                                <p className="fs-5 fw-semibold ms-2">₹{Math.round(futureCost - initialAmount).toLocaleString('en-IN')}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='container'>
+
+            <div className='container custom-width'>
                 <h2 className="mc-desc-title">What Is an Inflation Calculator?</h2>
                 <p>An inflation calculator calculates the effects of inflation on the cost of a specific category of goods or services.</p>
                 <p>Inflation is defined as the increase in the price of a basket of goods and services. It is usually calculated for a particular product, sector, or the economy as a whole. It indicates the degree to which the purchasing power of the rupee may fall.</p>

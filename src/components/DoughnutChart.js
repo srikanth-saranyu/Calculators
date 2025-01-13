@@ -1,5 +1,6 @@
+import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import "../../assets/styles/chart.css"
+import "../assets/styles/chart.css"
 
 import {
     Chart as ChartJS,
@@ -11,7 +12,7 @@ import {
 // Register necessary Chart.js components
 ChartJS.register(Tooltip, Legend, ArcElement);
 
-export default function TopUpChart({ investedAmount, estimatedReturns }) {
+export default function SIPChart({ investedAmount, estimatedReturns }) {
 
     const data = {
         labels: [],

@@ -4,57 +4,58 @@ import React, { useState } from "react";
 export default function SWPCalculator() {
 
     const [principalAmount, setPrincipalAmount] = useState(500000); // ₹1,00,000 initial investment
-  const [monthlyWithdrawal, setMonthlyWithdrawal] = useState(10000); // ₹5,000 monthly withdrawal
-  const [expectedReturns, setExpectedReturns] = useState(8); // Annual rate of return
-  const [duration, setDuration] = useState(5); // Duration in years (12 months)
+    const [monthlyWithdrawal, setMonthlyWithdrawal] = useState(10000); // ₹5,000 monthly withdrawal
+    const [expectedReturns, setExpectedReturns] = useState(8); // Annual rate of return
+    const [duration, setDuration] = useState(5); // Duration in years (12 months)
 
-  const calculateInvestmentDetails = () => {
-    const r = expectedReturns / 100; // Convert annual return percentage to decimal
-    const n = 12; // Monthly compounding periods
-    const t = duration; // Duration in years
-    const monthlyRate = r / n; // Monthly interest rate
-    const totalPeriods = n * t; // Total periods in months
+    const calculateInvestmentDetails = () => {
+        const r = expectedReturns / 100; // Convert annual return percentage to decimal
+        const n = 12; // Monthly compounding periods
+        const t = duration; // Duration in years
+        const monthlyRate = r / n; // Monthly interest rate
+        const totalPeriods = n * t; // Total periods in months
 
-    let remainingBalance = principalAmount;
-    let totalWithdrawn = 0;
+        let remainingBalance = principalAmount;
+        let totalWithdrawn = 0;
 
-    // Iterate month by month to calculate the remaining balance
-    for (let month = 1; month <= totalPeriods; month++) {
-      // Deduct monthly withdrawal
-      remainingBalance -= monthlyWithdrawal;
-      remainingBalance += remainingBalance * monthlyRate;
-      // Track total withdrawals
-      totalWithdrawn += monthlyWithdrawal;
-    }
+        // Iterate month by month to calculate the remaining balance
+        for (let month = 1; month <= totalPeriods; month++) {
+            // Deduct monthly withdrawal
+            remainingBalance -= monthlyWithdrawal;
+            remainingBalance += remainingBalance * monthlyRate;
+            // Track total withdrawals
+            totalWithdrawn += monthlyWithdrawal;
+        }
 
-    // The final corpus value at the end of the period
-    const finalValue = remainingBalance;
+        // The final corpus value at the end of the period
+        const finalValue = remainingBalance;
 
-    // Calculate total return: (final value + total withdrawn) - initial investment
-    const totalReturn = finalValue + totalWithdrawn - principalAmount;
+        // Calculate total return: (final value + total withdrawn) - initial investment
+        const totalReturn = finalValue + totalWithdrawn - principalAmount;
 
-    return {
-      investedAmount: principalAmount,
-      totalWithdrawal: totalWithdrawn,
-      finalValue: finalValue,
-      totalReturn: totalReturn
+        return {
+            investedAmount: principalAmount,
+            totalWithdrawal: totalWithdrawn,
+            finalValue: finalValue,
+            totalReturn: totalReturn
+        };
     };
-  };
 
-  const { investedAmount, totalWithdrawal, finalValue } = calculateInvestmentDetails();
+    const { investedAmount, totalWithdrawal, finalValue } = calculateInvestmentDetails();
 
     return (
         <div className="container">
             <h3 className="custom-width">SWP Calculator</h3>
-            <div className="row border rounded custom-width shadow">
+            <p className="custom-width">An SWP calculator is used to calculate the amount that you will earn from your investment in an SWP or Systematic Withdrawal Plan. The SWP calculator is thus a useful tool that will help you to easily choose the right SWP scheme for yourself, based on the returns that you will get from the scheme.</p>
+            <div className="row border rounded custom-width">
                 <div className="col-5">
                     <h5 className="pt-4 fw-bold">Returns Estimator</h5>
-                    <p className="small text-muted">Estimation is based on the past performance</p>
-                    <div className="border border-2 border-primary rounded mt-4">
-                        <label className="d-block text-center text-dark mb-2">Total Investment</label>
-                        <div className="ms-4 d-flex justify-content-center align-items-start">
-                            <span className="fs-5">₹</span>
-                            <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
+                    <p className="medium text-muted">Estimation is based on the past performance</p>
+                    <div className="border border-2 border-primary rounded input-field">
+                        <label className="d-block text-center">Total Investment</label>
+                        <div className="ms-5 d-flex justify-content-center align-items-start">
+                            <span className="fs-6">₹</span>
+                            <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
                                 value={principalAmount}
                                 onChange={(e) => setPrincipalAmount(Number(e.target.value))}
@@ -66,10 +67,10 @@ export default function SWPCalculator() {
                     <div className="w-100 mt-4">
                         <div className="d-flex justify-content-between align-items-center">
                             <label className="text-dark">Monthly Withdrawal</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
+                            <div className="d-flex align-items-baseline border-bottom border-1 mb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">₹</span>
-                                    <span className="fs-6 text ms-1">{monthlyWithdrawal}</span>
+                                    <span className="fs-3 text-dark">₹</span>
+                                    <span className="fs-3 text ms-1">{monthlyWithdrawal}</span>
                                 </p>
                             </div>
                         </div>
@@ -77,18 +78,18 @@ export default function SWPCalculator() {
                             value={monthlyWithdrawal}
                             onChange={(e) => setMonthlyWithdrawal(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">₹ 500</p>
-                            <p className="text-end text-muted">₹ 50000</p>
+                            <p className="text-start text-muted">₹500</p>
+                            <p className="text-end text-muted">₹50000</p>
                         </div>
                     </div>
 
                     <div className="w-100">
                         <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Withdrawal Period</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
+                            <label className="text-dark">Select Duration</label>
+                            <div className="d-flex align-items-baseline border-bottom border-1 mb-1 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{duration}</span>
-                                    <span className="fs-6 text ms-1">Yrs</span>
+                                    <span className="fs-3 text-dark fw-bold">{duration}</span>
+                                    <span className="fs-6 text ms-2">Yrs</span>
                                 </p>
                             </div>
                         </div>
@@ -102,11 +103,11 @@ export default function SWPCalculator() {
                     </div>
                     <div className="w-100">
                         <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Expected Rate of Return</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{expectedReturns}</span>
-                                    <span className="fs-6 text ms-1">%</span>
+                            <label className="text-dark">Expected Returns</label>
+                            <div className="d-flex align-items-baseline border-bottom border-1 mb-1 pb-1">
+                                <p className="d-flex align-items-baseline text-center mb-0">
+                                    <span className="fs-3 text-dark fw-bold">{expectedReturns}</span>
+                                    <span className="fs-6 text ms-3">%</span>
                                 </p>
                             </div>
                         </div>
@@ -114,8 +115,8 @@ export default function SWPCalculator() {
                             value={expectedReturns}
                             onChange={(e) => setExpectedReturns(Number(e.target.value))} />
                         <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 %</p>
-                            <p className="text-end text-muted">30 %</p>
+                            <p className="text-start text-muted">1%</p>
+                            <p className="text-end text-muted">30%</p>
                         </div>
                     </div>
                 </div>
@@ -135,7 +136,7 @@ export default function SWPCalculator() {
 
                 </div>
             </div>
-            <div className='container'>
+            <div className='container custom-width'>
                 <h2 className="mc-desc-title">What is an SWP calculator?</h2>
                 <div className="mc-desc-para">
                     <p>Systematic Withdrawal Plan (SWP) is an offering that an investor can use to make systematic withdrawals from the existing corpus created by the investor in a mutual fund scheme. SWP calculator will facilitate an investor to determine how many withdrawals can they make from the invested corpus given that it will continue to make returns on the remaining balance of the corpus after each systematic withdrawals.</p>

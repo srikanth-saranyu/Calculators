@@ -1,12 +1,35 @@
+import { useState } from 'react';
 import "../../assets/styles/sip.css"
 import EMIChart from "./chart"
+import CalculatorInputs from '../CalculatorInputs';
 
 export default function EMICalculator() {
+
+    const [loanAmount, setLoanAmount] = useState(100000);
+    const [interestRate, setInterestRate] = useState(6);
+    const [loanDuration, setLoanDuration] = useState(5);
+
+    const calculateEMI = () => {
+        const P = loanAmount;
+        const R = (interestRate / 12) / 100;
+        const N = loanDuration * 12;
+
+        // EMI Calculation using the formula
+        const EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+        return EMI;
+    };
+
+    const EMI = calculateEMI();
+    const totalInterest = EMI * loanDuration * 12 - loanAmount;
+    const totalPayable = loanAmount + totalInterest;
+
+
     return (
         <div className="container">
             <h3 className="custom-width">EMI Calculator</h3>
-            <div className="row border rounded custom-width shadow">
-                <div className="col-5">
+            <p className="custom-width">Understanding your monthly loan payments is crucial for effective financial management, especially when budgeting for goals like home renovations or debt reduction. Using an EMI calculator simplifies this process. It can help you quickly estimate your payments by entering the loan amount, term, and interest rate, giving you an instant view of your monthly instalments.</p>
+            <div className="row border rounded custom-width">
+                {/* <div className="col-5">
                     <h5 className="pt-4 fw-bold">Returns Estimator</h5>
                     <p className="small text-muted">Estimation is based on the past performance</p>
                     <div className="border border-2 border-primary rounded mt-4">
@@ -15,23 +38,25 @@ export default function EMICalculator() {
                             <span className="fs-5">₹</span>
                             <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value="1,00,000"
+                                value={loanAmount}
+                                onChange={(e) => setLoanAmount(e.target.value)}
                                 style={{ width: "8ch" }} />
-
                         </div>
-
                     </div>
+
                     <div className="w-100 mt-4">
                         <div className="d-flex justify-content-between align-items-center">
                             <label className="text-dark">Interest rate</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">6</span>
+                                    <span className="fs-5 text-dark fw-bold">{interestRate}</span>
                                     <span className="fs-6 text ms-1">%</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3"></input>
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={interestRate}
+                            onChange={(e) => setInterestRate(e.target.value)} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 %</p>
                             <p className="text-end text-muted">15 %</p>
@@ -42,49 +67,64 @@ export default function EMICalculator() {
                             <label className="text-dark">Loan Duration</label>
                             <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">5</span>
+                                    <span className="fs-5 text-dark fw-bold">{loanDuration}</span>
                                     <span className="fs-6 text ms-1">Yrs</span>
                                 </p>
                             </div>
                         </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3" />
+                        <input type="range" className="slider" min="1" max="30" step="1"
+                            value={loanDuration}
+                            onChange={(e) => setLoanDuration(e.target.value)} />
                         <div className="d-flex justify-content-between">
                             <p className="text-start text-muted">1 Yr</p>
                             <p className="text-end text-muted">30 Yrs</p>
                         </div>
                     </div>
-
-                </div>
-
+                </div> */}
+                <CalculatorInputs
+                    amountLabel="ENTER LOAN AMOUNT"
+                    amountValue={loanAmount} 
+                    onAmountChange={setLoanAmount} 
+                    durationLabel="Select Duration"
+                    durationValue={loanDuration} 
+                    onDurationChange={setLoanDuration} 
+                    rateLabel="Interest Rate"
+                    rateValue={interestRate} 
+                    onRateChange={setInterestRate} 
+                    minDuration={1}
+                    maxDuration={30}
+                    minRate={1}
+                    maxRate={30}
+                />
 
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
-                        <p>EMI</p>
-                        <span>₹</span>
+                        <p className="text-dark mb-0">EMI</p>
+                        <span className="amount">₹ {Math.round(EMI).toLocaleString('en-IN')}/month</span>
                     </div>
                     <div className="d-flex flex-row justify-content-center">
 
                         <div className="d-flex justify-content-center align-items-center">
-                            <EMIChart />
+                            <EMIChart loanAmount={loanAmount} totalInterest={totalInterest} />
                         </div>
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
                                 <p className="text-muted ms-2 mb-0">Principal Amount</p>
-                                <p className="fs-5 fw-semibold ms-2">₹3,00,000</p>
+                                <p className="fs-5 fw-semibold ms-2">₹{loanAmount.toLocaleString('en-IN')}</p>
                             </div>
                             <div className="border-start border-5 border-returnsBlue mt-2">
                                 <p className="text-muted ms-2 mb-0">Interest</p>
-                                <p className="fs-5 fw-semibold ms-2">₹1,12,432</p>
+                                <p className="fs-5 fw-semibold ms-2">₹{Math.round(totalInterest).toLocaleString('en-IN')}</p>
                             </div>
                             <div className="border-start border-5 border-returnsgrey mt-2">
                                 <p className="text-muted ms-2 mb-0">Total Payable</p>
-                                <p className="fs-5 fw-semibold ms-2">₹1,12,432</p>
+                                <p className="fs-5 fw-semibold ms-2">₹{Math.round(totalPayable).toLocaleString('en-IN')}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='container'>
+            <div className='container custom-width'>
                 <h2 className="mc-desc-title">What Is an EMI Calculator?</h2>
                 <p>An EMI calculator helps you calculate EMI amount for any loan, such as a home loan, car loan, personal loan, education loan, etc. online for free. It takes the entered values and computes the EMI amount in seconds. The online EMI calculator can also show you a break-up of total payment into principal and interest components. It also helps you compare different loan options and plan your monthly budget accordingly.</p>
 

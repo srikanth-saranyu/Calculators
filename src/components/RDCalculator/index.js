@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/styles/sip.css"
-import RDChart from "./chart"
+import DoughnutChart from '../DoughnutChart'
+import CalculatorInputs from "../CalculatorInputs";
 
 export default function RDCalculator() {
 
@@ -33,8 +34,9 @@ export default function RDCalculator() {
     return (
         <div className="container">
             <h3 className="custom-width">RD Calculator</h3>
-            <div className="row border rounded custom-width shadow">
-                <div className="col-5">
+            <p className="custom-width">Investing is crucial for achieving financial goals and securing a stable future. It not only helps in wealth accumulation but also provides a hedge against inflation. Among various investment options, Recurring Deposits (RDs) offer a disciplined and low-risk approach to saving and growing your money over time.</p>
+            <div className="row border rounded custom-width">
+                {/* <div className="col-5">
                     <h5 className="pt-4 fw-bold">Returns Estimator</h5>
                     <p className="small text-muted">Estimation is based on the past performance</p>
                     <div className="border border-2 border-primary rounded mt-4">
@@ -85,8 +87,22 @@ export default function RDCalculator() {
                             <p className="text-end text-muted">15 %</p>
                         </div>
                     </div>
-                </div>
-
+                </div> */}
+                <CalculatorInputs
+                    amountLabel="ENTER AMOUNT"
+                    amountValue={monthlyInvestment}
+                    onAmountChange={setMonthlyInvestment}
+                    durationLabel="Select Duration"
+                    durationValue={duration}
+                    onDurationChange={setDuration}
+                    rateLabel="Expected Rate of Return"
+                    rateValue={interestRate}
+                    onRateChange={setInterestRate}
+                    minDuration={1}
+                    maxDuration={30}
+                    minRate={1}
+                    maxRate={15}
+                />
 
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
@@ -96,7 +112,7 @@ export default function RDCalculator() {
                     <div className="d-flex flex-row justify-content-center">
 
                         <div className="d-flex justify-content-center align-items-center">
-                            <RDChart investedAmount={investedAmount} estimatedReturns={estimatedReturns} />
+                            <DoughnutChart investedAmount={investedAmount} estimatedReturns={estimatedReturns} />
                         </div>
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
@@ -111,7 +127,8 @@ export default function RDCalculator() {
                     </div>
                 </div>
             </div>
-            <div className='container'>
+
+            <div className='container custom-width'>
                 <h2 className="mc-desc-title">What is an RD Calculator?</h2>
                 <div className="mc-desc-para">
                     <p>An RD calculator is a valuable financial tool on Angel One designed to help individuals calculate their investment growth in RDs. This online calculator takes basic yet crucial factors such as the investment amount, duration, and interest rate into consideration. And in less than a minute, it displays the future value of the investment.</p>

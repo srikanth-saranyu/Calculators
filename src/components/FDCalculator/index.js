@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../assets/styles/sip.css"
-import FDChart from "./chart"
+import DoughnutChart from '../DoughnutChart'
+import CalculatorInputs from "../CalculatorInputs";
 
 export default function FDCalculator() {
 
@@ -24,8 +25,9 @@ export default function FDCalculator() {
     return (
         <div className="container">
             <h3 className="custom-width">FD Calculator</h3>
-            <div className="row border rounded custom-width shadow">
-                <div className="col-5">
+            <p className="custom-width">An FD calculator is used for calculating the final amount that you will get if you invest in a Fixed Deposit (FD) with a given amount, a given rate of interest, and a given duration of investment.</p>
+            <div className="row border rounded custom-width">
+                {/* <div className="col-5">
                     <h5 className="pt-4 fw-bold">Returns Estimator</h5>
                     <p className="small text-muted">Estimation is based on the past performance</p>
                     <div className="border border-2 border-primary rounded mt-4">
@@ -77,19 +79,33 @@ export default function FDCalculator() {
                             <p className="text-end text-muted">10 %</p>
                         </div>
                     </div>
-                </div>
-
+                </div> */}
+                <CalculatorInputs
+                    amountLabel="ENTER AMOUNT"
+                    amountValue={principal} 
+                    onAmountChange={setPrincipal} 
+                    durationLabel="Select Duration"
+                    durationValue={duration} 
+                    onDurationChange={setDuration} 
+                    rateLabel="Expected Rate of Return"
+                    rateValue={interestRate} 
+                    onRateChange={setInterestRate} 
+                    minDuration={1}
+                    maxDuration={30}
+                    minRate={1}
+                    maxRate={30}
+                />
 
 
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
-                        <p className="text-dark">The total value of your investment after<b><span className="selected-years">&nbsp;{duration} years</span></b> will be</p>
+                        <p className="text-dark">The future value of your investment after<b><span className="selected-years">&nbsp;{duration} years</span></b> will be</p>
                         <span className="amount">₹ {Math.round(maturityAmount).toLocaleString('en-IN')}</span>
                     </div>
                     <div className="d-flex flex-row justify-content-center">
 
                         <div className="d-flex justify-content-center align-items-center">
-                            <FDChart principal={principal} estimatedReturns={estimatedReturns}/>
+                            <DoughnutChart investedAmount={principal} estimatedReturns={estimatedReturns} />
                         </div>
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
@@ -104,7 +120,7 @@ export default function FDCalculator() {
                     </div>
                 </div>
             </div>
-            <div className='container'>
+            <div className='container custom-width'>
                 <h2 className="mc-desc-title">What is an FD Calculator?</h2>
                 <div className="mc-desc-para">
                     <p>A FD calculator is a free, online tool that can help you automatically calculate the future value of your fixed deposit investment based on the amount invested, the duration of investment, and the rate of returns offered by the bank. It is a better alternative to manually calculating the maturity amount of an FD. Since it is publicly available online, anyone with a device with internet access can use it to accurately calculate returns on their FD investments.</p>
