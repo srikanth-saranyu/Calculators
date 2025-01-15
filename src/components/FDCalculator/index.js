@@ -27,69 +27,17 @@ export default function FDCalculator() {
             <h3 className="custom-width">FD Calculator</h3>
             <p className="custom-width">An FD calculator is used for calculating the final amount that you will get if you invest in a Fixed Deposit (FD) with a given amount, a given rate of interest, and a given duration of investment.</p>
             <div className="row border rounded custom-width">
-                {/* <div className="col-5">
-                    <h5 className="pt-4 fw-bold">Returns Estimator</h5>
-                    <p className="small text-muted">Estimation is based on the past performance</p>
-                    <div className="border border-2 border-primary rounded mt-4">
-                        <label className="d-block text-center text-dark mb-2">Total Investment</label>
-                        <div className="ms-4 d-flex justify-content-center align-items-start">
-                            <span className="fs-5">₹</span>
-                            <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
-                                placeholder="0"
-                                value={principal}
-                                onChange={(e) => setPrincipal(Number(e.target.value))}
-                                style={{ width: "8ch" }} />
 
-                        </div>
-
-                    </div>
-                    <div className="w-100 mt-4">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Select Duration</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{duration}</span>
-                                    <span className="fs-6 text ms-1">Yrs</span>
-                                </p>
-                            </div>
-                        </div>
-                        <input type="range" className="slider" min="1" max="30" step="1"
-                            value={duration}
-                            onChange={(e) => setDuration(Number(e.target.value))} />
-                        <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 Yr</p>
-                            <p className="text-end text-muted">30 Yrs</p>
-                        </div>
-                    </div>
-                    <div className="w-100">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Interest Rate</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{interestRate}</span>
-                                    <span className="fs-6 text ms-1">%</span>
-                                </p>
-                            </div>
-                        </div>
-                        <input type="range" className="slider" min="1" max="10" step="0.5"
-                            value={interestRate}
-                            onChange={(e) => setInterestRate(Number(e.target.value))} />
-                        <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 %</p>
-                            <p className="text-end text-muted">10 %</p>
-                        </div>
-                    </div>
-                </div> */}
                 <CalculatorInputs
                     amountLabel="ENTER AMOUNT"
-                    amountValue={principal} 
-                    onAmountChange={setPrincipal} 
+                    amountValue={principal}
+                    onAmountChange={setPrincipal}
                     durationLabel="Select Duration"
-                    durationValue={duration} 
-                    onDurationChange={setDuration} 
+                    durationValue={duration}
+                    onDurationChange={setDuration}
                     rateLabel="Expected Rate of Return"
-                    rateValue={interestRate} 
-                    onRateChange={setInterestRate} 
+                    rateValue={interestRate}
+                    onRateChange={setInterestRate}
                     minDuration={1}
                     maxDuration={30}
                     minRate={1}

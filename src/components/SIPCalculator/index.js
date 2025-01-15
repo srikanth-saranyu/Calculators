@@ -38,59 +38,7 @@ export default function SIPCalculator() {
             <h3 className="custom-width">SIP Calculator</h3>
             <p className="custom-width">The SIP calculator helps estimate the potential growth of your Systematic Investment Plan (SIP) investment over your chosen time frame. SIP is a convenient method to save for your long-term financial goals.</p>
             <div className="row border rounded custom-width">
-                {/* <div className="col-5">
-                    <h5 className="pt-4 fw-bold">Returns Estimator</h5>
-                    <p className="medium text-muted">Estimation is based on the past performance</p>
-                    <div className="border border-2 border-primary rounded mt-4">
-                        <label className="d-block text-center mb-2">ENTER AMOUNT</label>
-                        <div className="ms-4 d-flex justify-content-center align-items-start">
-                            <span className="fs-5">₹</span>
-                            <input type="text" className="form-control input-number fs-2 bg-transparent border-0 outline text-dark text-start"
-                                placeholder="0"
-                                value={monthlyInvestment}
-                                onChange={(e) => setMonthlyInvestment(e.target.value)}
-                                style={{ width: "8ch" }} />
 
-                        </div>
-
-                    </div>
-                    <div className="w-100 mt-4">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Select Duration</label>
-                            <div className="d-flex align-items-baseline border-bottom border-1 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-3 text-dark fw-bold">{investmentPeriod}</span>
-                                    <span className="fs-6 text ms-3">Yrs</span>
-                                </p>
-                            </div>
-                        </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3"
-                            value={investmentPeriod}
-                            onChange={(e) => setInvestmentPeriod(Number(e.target.value))} />
-                        <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 Yr</p>
-                            <p className="text-end text-muted">30 Yrs</p>
-                        </div>
-                    </div>
-                    <div className="w-100">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Expected Rate of Return</label>
-                            <div className="d-flex align-items-baseline border-bottom border-1 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-3 text-dark fw-bold">{expectedReturn}</span>
-                                    <span className="fs-6 text ms-3">%</span>
-                                </p>
-                            </div>
-                        </div>
-                        <input type="range" className="slider" min="1" max="30" step="1" id="customRange3"
-                            value={expectedReturn}
-                            onChange={(e) => setExpectedReturn(Number(e.target.value))} />
-                        <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1%</p>
-                            <p className="text-end text-muted">30%</p>
-                        </div>
-                    </div>
-                </div> */}
                 <CalculatorInputs
                     amountLabel="ENTER AMOUNT"
                     amountValue={monthlyInvestment}
@@ -113,7 +61,7 @@ export default function SIPCalculator() {
                         <p className="text-dark">The total value of your investment after<b><span>&nbsp;{investmentPeriod} years</span></b> will be</p>
                         <span className="amount">₹ {Math.round(investedAmount + estimatedReturns).toLocaleString('en-IN')}</span>
                     </div>
-                    
+
                     <div className="d-flex flex-row justify-content-center">
                         <div className="d-flex justify-content-center align-items-center">
                             <DoughnutChart investedAmount={investedAmount} estimatedReturns={estimatedReturns} />

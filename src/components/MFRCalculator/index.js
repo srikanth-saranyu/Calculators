@@ -27,59 +27,7 @@ export default function MFRCalculator() {
         <div className="container">
             <h3 className="custom-width">Mutual Fund Returns Calculator</h3>
             <div className="row border rounded custom-width">
-                {/* <div className="col-5">
-                    <h5 className="pt-4 fw-bold">Returns Estimator</h5>
-                    <p className="small text-muted">Estimation is based on the past performance</p>
-                    <div className="border border-2 border-primary rounded mt-4">
-                        <label className="d-block text-center text-dark mb-2">Total Investment</label>
-                        <div className="ms-4 d-flex justify-content-center align-items-start">
-                            <span className="fs-5">₹</span>
-                            <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
-                                placeholder="0"
-                                value={investmentAmount}
-                                onChange={(e) => setInvestmentAmount(e.target.value)}
-                                style={{ width: "8ch" }} />
 
-                        </div>
-
-                    </div>
-                    <div className="w-100 mt-4">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Expected Rate of Return</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{rateOfReturn}</span>
-                                    <span className="fs-6 text ms-1">%</span>
-                                </p>
-                            </div>
-                        </div>
-                        <input type="range" className="slider" min="1" max="30" step="1"
-                            value={rateOfReturn}
-                            onChange={(e) => setRateOfReturn(e.target.value)} />
-                        <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 %</p>
-                            <p className="text-end text-muted">15 %</p>
-                        </div>
-                    </div>
-                    <div className="w-100">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Select Duration</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{investmentDuration}</span>
-                                    <span className="fs-6 text ms-1">Yrs</span>
-                                </p>
-                            </div>
-                        </div>
-                        <input type="range" className="slider" min="1" max="30" step="1"
-                            value={investmentDuration}
-                            onChange={(e) => setInvestmentDuration(e.target.value)} />
-                        <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 Yr</p>
-                            <p className="text-end text-muted">30 Yrs</p>
-                        </div>
-                    </div>
-                </div> */}
                 <CalculatorInputs
                     amountLabel="ENTER AMOUNT"
                     amountValue={monthlyInvestment}

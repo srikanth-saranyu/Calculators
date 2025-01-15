@@ -145,26 +145,26 @@ export default function Home() {
                         </div>
                     </Link>
                 </div>
-                {/* <div className='col-3 mb-4'>
-                    <Link to="/si-calculator">
+                <div className='col-3 mb-4'>
+                    <Link to="/epf-calculator">
                         <div className="card" style={{ width: "18rem" }}>
                             <img src={imgSrc} class="card-img-top" alt="fund" />
                             <div className="card-body">
-                                <h5 className="card-title pb-4">Simple Interest Calculator</h5>
+                                <h5 className="card-title">EPF Calculator</h5>
                             </div>
                         </div>
                     </Link>
-                </div> */}
-                {/* <div className='col-3 mb-4'>
-                    <Link to="/emi-calculator">
+                </div>
+                <div className='col-3 mb-4'>
+                    <Link to="/ppf-calculator">
                         <div className="card" style={{ width: "18rem" }}>
                             <img src={imgSrc} class="card-img-top" alt="fund" />
                             <div className="card-body">
-                                <h5 className="card-title pb-4">EMI Calculator</h5>
+                                <h5 className="card-title">PPF Calculator</h5>
                             </div>
                         </div>
                     </Link>
-                </div> */}
+                </div>
                 {/* <div className='col-3 mb-4'>
                     <Link to="/inflation-calculator">
                         <div className="card" style={{ width: "18rem" }}>

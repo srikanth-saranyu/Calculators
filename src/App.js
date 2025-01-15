@@ -16,6 +16,8 @@ import SICalculator from './components/SICalculator/index.js';
 import InflationCalculator from './components/InflationCalculator/index.js';
 import EMICalculator from './components/EMICalculator/index.js';
 import NPSCalculator from './components/NPSCalculator/index.js';
+import EPFCalculator from './components/EPFCalculator/index.js';
+import PPFCalculator from './components/PPFCalculator/index.js';
 
 
 const nameConverstion = (str) => {
@@ -73,7 +75,8 @@ function App() {
         <Route path="/inflation-calculator" element={< InflationCalculator />} />
         <Route path="/emi-calculator" element={< EMICalculator />} />
         <Route path="/nps-calculator" element={< NPSCalculator />} />
-
+        <Route path="/epf-calculator" element={< EPFCalculator />} />
+        <Route path="/ppf-calculator" element={< PPFCalculator />} />      
 
       </Routes>
 

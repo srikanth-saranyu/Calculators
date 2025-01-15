@@ -25,6 +25,22 @@ const CalculatorInputs = ({
         }
     };
 
+    // function formatNumber(e) {
+    //     // Remove formatting (commas) for raw value
+    //     console.log(e.target.value)
+    //     const rawValue = e.target.value.replace(/,/g, "");
+  
+    //     // If the input is not a valid number, do nothing
+    //     if (isNaN(rawValue) || rawValue === "") {
+    //       e.target.value = "";
+    //       return;
+    //     }
+  
+    //     // Format the number with commas
+    //     const formattedValue = parseFloat(rawValue).toLocaleString("en-IN");
+    //     e.target.value = formattedValue;
+    //   }
+
 
     return (
         <div className="col-5">
@@ -40,6 +56,7 @@ const CalculatorInputs = ({
                         placeholder="0"
                         value={amountValue}
                         onChange={handleAmountChange}
+                        // onInput={formatNumber}
                         style={{ width: "8ch" }}
                     />
                 </div>

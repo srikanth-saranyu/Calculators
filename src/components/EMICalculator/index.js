@@ -29,68 +29,17 @@ export default function EMICalculator() {
             <h3 className="custom-width">EMI Calculator</h3>
             <p className="custom-width">Understanding your monthly loan payments is crucial for effective financial management, especially when budgeting for goals like home renovations or debt reduction. Using an EMI calculator simplifies this process. It can help you quickly estimate your payments by entering the loan amount, term, and interest rate, giving you an instant view of your monthly instalments.</p>
             <div className="row border rounded custom-width">
-                {/* <div className="col-5">
-                    <h5 className="pt-4 fw-bold">Returns Estimator</h5>
-                    <p className="small text-muted">Estimation is based on the past performance</p>
-                    <div className="border border-2 border-primary rounded mt-4">
-                        <label className="d-block text-center text-dark mb-2">Loan Amount</label>
-                        <div className="ms-4 d-flex justify-content-center align-items-start">
-                            <span className="fs-5">₹</span>
-                            <input type="text" className="form-control fs-1 bg-transparent border-0 text-dark text-start"
-                                placeholder="0"
-                                value={loanAmount}
-                                onChange={(e) => setLoanAmount(e.target.value)}
-                                style={{ width: "8ch" }} />
-                        </div>
-                    </div>
-
-                    <div className="w-100 mt-4">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Interest rate</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{interestRate}</span>
-                                    <span className="fs-6 text ms-1">%</span>
-                                </p>
-                            </div>
-                        </div>
-                        <input type="range" className="slider" min="1" max="30" step="1"
-                            value={interestRate}
-                            onChange={(e) => setInterestRate(e.target.value)} />
-                        <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 %</p>
-                            <p className="text-end text-muted">15 %</p>
-                        </div>
-                    </div>
-                    <div className="w-100">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <label className="text-dark">Loan Duration</label>
-                            <div className="d-flex align-items-baseline border-bottom border-2 pb-1">
-                                <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-5 text-dark fw-bold">{loanDuration}</span>
-                                    <span className="fs-6 text ms-1">Yrs</span>
-                                </p>
-                            </div>
-                        </div>
-                        <input type="range" className="slider" min="1" max="30" step="1"
-                            value={loanDuration}
-                            onChange={(e) => setLoanDuration(e.target.value)} />
-                        <div className="d-flex justify-content-between">
-                            <p className="text-start text-muted">1 Yr</p>
-                            <p className="text-end text-muted">30 Yrs</p>
-                        </div>
-                    </div>
-                </div> */}
+                
                 <CalculatorInputs
                     amountLabel="ENTER LOAN AMOUNT"
-                    amountValue={loanAmount} 
-                    onAmountChange={setLoanAmount} 
+                    amountValue={loanAmount}
+                    onAmountChange={setLoanAmount}
                     durationLabel="Select Duration"
-                    durationValue={loanDuration} 
-                    onDurationChange={setLoanDuration} 
+                    durationValue={loanDuration}
+                    onDurationChange={setLoanDuration}
                     rateLabel="Interest Rate"
-                    rateValue={interestRate} 
-                    onRateChange={setInterestRate} 
+                    rateValue={interestRate}
+                    onRateChange={setInterestRate}
                     minDuration={1}
                     maxDuration={30}
                     minRate={1}
