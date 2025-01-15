@@ -5,17 +5,17 @@ import React, { useState, useEffect } from "react";
 
 export default function PPFCalculator() {
 
-    const [investmentAmount, setInvestmentAmount] = useState(100000); // Total investment (annually)
+    const [investmentAmount, setInvestmentAmount] = useState(100000); 
     // const [interestRate, setInterestRate] = useState(0); // Rate of interest
-    const [investmentPeriod, setInvestmentPeriod] = useState(15); // Duration in years
-    const [maturityAmount, setMaturityAmount] = useState(0); // The maturity amount (F)
+    const [investmentPeriod, setInvestmentPeriod] = useState(15); 
+    const [maturityAmount, setMaturityAmount] = useState(0); 
 
     const interestRate = 7.1
     // Function to calculate PPF maturity amount using the formula
     const calculateMaturityAmount = () => {
-        const i = interestRate / 100; // Convert interest rate to decimal
-        const n = investmentPeriod; // Years
-        const P = investmentAmount; // Annual investment
+        const i = interestRate / 100; 
+        const n = investmentPeriod; 
+        const P = investmentAmount; 
 
         // Apply the PPF formula: F = P * [((1 + i) ^ n - 1) / i]
         const futureValue = P * (((Math.pow(1 + i, n) - 1) / i));
@@ -48,7 +48,6 @@ export default function PPFCalculator() {
                                 value={investmentAmount}
                                 onChange={(e) => setInvestmentAmount(Number(e.target.value))}
                                 style={{ width: "8ch" }} />
-
                         </div>
 
                     </div>
@@ -56,8 +55,9 @@ export default function PPFCalculator() {
                         <div className="d-flex justify-content-between align-items-center">
                             <label className="text-dark">Interest rate</label>
                             <div className="d-flex align-items-baseline mb-1 pb-1">
-                                <p className="d-flex align-items-baseline mb-0 p-2 border border-1 rounded">
-                                    <span className="fs-3 text-dark fw-bold">7.1%</span>
+                                <p className="disabled-input align-items-baseline mb-0 p-2 border border-0">
+                                    <span className="fs-3 text-dark fw-bold">7.1</span>
+                                    <span>%</span>
                                 </p>
                             </div>
                         </div>
@@ -110,36 +110,28 @@ export default function PPFCalculator() {
                 </div>
             </div>
             <div className='container custom-width'>
-                <h2 className="mc-desc-title">What is an SIP Calculator?</h2>
+                <h2 className="mc-desc-title">What Is a PPF Calculator?</h2>
                 <div className="mc-desc-para">
-                    <p>SIP Calculator is a tool which facilitates the investor to calculate the estimated future value of the systematic monthly investments made in the mutual fund scheme. This tool assumes that your expected rate of return is constant over the selected investment period, which may vary with your actual investments made in real time.</p>
+                    <p>A PPF calculator is an online financial tool that allows you to determine the value of your investment in PPF at maturity and returns. It simplifies the difficult computations linked with the Public Provident Funds account, allowing you to evaluate the long-term growth of your investment amount. The main advantage offered by online calculators is accuracy, which often goes amiss in the case of manual calculations. Additionally, these digital calculations are not time intensive, contrary to manual calculations.</p>
+                    <p>The online PPF calculator by Angel One is among these robust online calculators that allow you to compare various investing possibilities. By modifying these variables, you may analyse how changes in parameters such as the yearly investment and time duration will affect your maturity amount and interest received.</p>
+                    <p>This enables you to optimise your investments to achieve your financial goals.</p>
                 </div>
-                <h2 className="mc-desc-title">How does SIP Calculator Work?</h2>
+                <h2 className="mc-desc-title">How Does a PPF Calculator Work?</h2>
 
-                <p>Inputs required by the SIP Calculator:</p>
-                <ul>
-                    <li><strong>Monthly SIP amount: </strong>The investor needs to input the monthly investment amount.</li>
-                    <li><strong>Investment Period: </strong>Frequency of the investment (n)</li>
-                    <li><strong>Expected Rate of Return: </strong>The investor also needs to feed in the expected rate of return that one may expect on an annual basis.</li>
-                </ul>
-                <p><strong>Output:</strong></p>
-                <p>The SIP Calculator would consume the inputs provided by the investor and would give them the estimated Future value of the systematic monthly investments made by the investor and the Expected return the investor may earn over and above the investments made by the investor.</p>
-                <p><strong>SIP Calculator Illustration: </strong></p>
-                <p>Let's assume that an investor wants to invest Rs. 10,000 on a monthly basis for a period of 10 years that will give them an expected rate of return of 12% p.a.</p>
-                <p>The following will be the inputs for using SIP Calculator:</p>
-                <ul>
-                    <li><strong>Monthly SIP amount: </strong>Rs.10,000</li>
-                    <li><strong>Investment Period: </strong>10 years</li>
-                    <li><strong>Expected Rate of Return: </strong>12% p.a.</li>
-                </ul>
-                <p>This will provide the investor with the estimated Future value of investments, Monthly investments made by investor and the expected returns earned:</p>
-                <ul>
-                    <li><strong>Total estimated Future value of investments (A): </strong>Rs.23,23,391</li>
-                    <li><strong>Total Monthly investments made by investors (B): </strong>Rs.12,00,000</li>
-                    <li><strong>Total Return earned by the investor (A - B): </strong>Rs.11,23,391</li>
-                </ul>
-                <p>Basis the estimated Future value of investments and Expected return, the investor may change the Monthly SIP amount or Investment Period or Expected Rate of Return in order to attain the desired Expected returns that an investor wants to achieve over the given period of time.</p>
-                <p><strong>Disclaimer: </strong>This calculator is meant for investor education and awareness purpose only and shall not be considered as any recommendation to make investments in the schemes of respective Mutual Fund. Please consult your financial / tax advisor(s) before taking any investment decisions.</p>
+                <p>A PPF calculator computes the growth of your contributions in a PPF account using a preset compound interest formula. It takes into account your yearly deposit amount, fixed rate of return, and investment tenure. The PPF calculator offers an estimation of the amount you will receive at the end of the investment tenure.</p>
+                <h2 className="mc-desc-title">What Is the PPF Calculator Formula?</h2>
+                <p>The formula used to calculate PPF is below:</p>
+                <p><strong>{`F = P [({(1+i) ^n}-1)/i]`}</strong></p>
+                <span>Where,</span><br />
+                <span>i is the rate of interest</span><br />
+                <span>F is the maturity amount of PPF</span><br />
+                <span>N is the number of years</span><br />
+                <p>P is the amount invested annually</p>
+
+                <p>Let us consider an example to calculate the PPF investment manually. Suppose starting April 2022 you are investing ₹50,000 for the wedding expenses of your child in a PPF account with an annual interest rate of 7.1% for 15 years.</p>
+                
+
+                    <p><strong>Disclaimer: </strong>This calculator is meant for investor education and awareness purpose only and shall not be considered as any recommendation to make investments in the schemes of respective Mutual Fund. Please consult your financial / tax advisor(s) before taking any investment decisions.</p>
                 <p><strong>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</strong></p>
             </div>
 

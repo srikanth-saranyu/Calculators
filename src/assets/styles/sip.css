@@ -80,6 +80,10 @@ input[type="range"]::-moz-range-progress {
     background: linear-gradient(to right, #3f5bd9 0%, #3f5bd9 16.7%, #E3EBF6 16.7%, #E3EBF6 100%) !important;
   }
 
+  .disabled-input {
+    background-color: #efefef;
+    width: 100%;
+  }
   .form-label {
     /* font-weight: 400;
     /* color: #2a394e; */
