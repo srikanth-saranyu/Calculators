@@ -18,6 +18,10 @@ import EMICalculator from './components/EMICalculator/index.js';
 import NPSCalculator from './components/NPSCalculator/index.js';
 import EPFCalculator from './components/EPFCalculator/index.js';
 import PPFCalculator from './components/PPFCalculator/index.js';
+import APYCalculator from './components/APYCalculator/index.js';
+import ELSSCalculator from './components/ELSSCalculator/index.js';
+import EBITDACalculator from './components/EBITDACalculator/index.js';
+import DYCalculator from './components/DYCalculator/index.js';
 
 
 const nameConverstion = (str) => {
@@ -76,7 +80,12 @@ function App() {
         <Route path="/emi-calculator" element={< EMICalculator />} />
         <Route path="/nps-calculator" element={< NPSCalculator />} />
         <Route path="/epf-calculator" element={< EPFCalculator />} />
-        <Route path="/ppf-calculator" element={< PPFCalculator />} />      
+        <Route path="/ppf-calculator" element={< PPFCalculator />} />
+        <Route path="/apy-calculator" element={< APYCalculator />} />
+        <Route path="/elss-calculator" element={< ELSSCalculator />} />
+        <Route path="/ebitda-calculator" element={< EBITDACalculator />} />
+        <Route path="/dy-calculator" element={< DYCalculator />} />
+        
 
       </Routes>
 

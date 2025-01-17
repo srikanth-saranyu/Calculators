@@ -165,12 +165,54 @@ export default function Home() {
                         </div>
                     </Link>
                 </div>
-                {/* <div className='col-3 mb-4'>
-                    <Link to="/inflation-calculator">
+                <div className='col-3 mb-4'>
+                    <Link to="/apy-calculator">
                         <div className="card" style={{ width: "18rem" }}>
                             <img src={imgSrc} class="card-img-top" alt="fund" />
                             <div className="card-body">
-                                <h5 className="card-title pb-4">Inflation Calculator</h5>
+                                <h5 className="card-title">APY Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+            </div>
+            <div className='row d-flex justify-content-start'>
+            <div className='col-3 mb-4'>
+                    <Link to="/elss-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">ELSS Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className='col-3 mb-4'>
+                    <Link to="/ebitda-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">EBITDA Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className='col-3 mb-4'>
+                    <Link to="/dy-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">Dividend Yield Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                {/* <div className='col-3 mb-4'>
+                    <Link to="/elss-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">ELSS Calculator</h5>
                             </div>
                         </div>
                     </Link>

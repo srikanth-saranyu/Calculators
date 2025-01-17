@@ -4,7 +4,7 @@ import DoughnutChart from '../DoughnutChart'
 import CalculatorInputs from '../CalculatorInputs'
 
 export default function LumpsumCalculator() {
-
+    const initialInvestment = 5000;
     const [lumpsumInvestment, setLumpsumInvestment] = useState(50000);
     const [duration, setDuration] = useState(5);
     const [rateOfReturn, setRateOfReturn] = useState(12);
@@ -28,7 +28,8 @@ export default function LumpsumCalculator() {
             <div className="row border rounded custom-width">
                 <CalculatorInputs
                     amountLabel="ENTER AMOUNT"
-                    amountValue={lumpsumInvestment}
+                    // amountValue={lumpsumInvestment}
+                    initialInvestment={initialInvestment}
                     onAmountChange={setLumpsumInvestment}
                     durationLabel="Select Duration"
                     durationValue={duration}

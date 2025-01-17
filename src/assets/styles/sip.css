@@ -44,6 +44,13 @@ input.input-number:focus {
     line-height: 60px;
 }
 
+.apy-amount {
+  font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 40px;
+}
+
 .border-investedOrange {
     height: 50px;
     border-width: 8px !important;
@@ -105,3 +112,15 @@ input[type="range"]::-moz-range-progress {
     color: #007bff; /* Default link color */
     text-decoration: none;
   }
+
+  .nav-link.inactive {
+    color: grey;
+    font-size: 18px
+}
+
+.nav-link.active-tab {
+    color: blue;
+    font-weight: 400;
+    font-size: 18px;
+}
+

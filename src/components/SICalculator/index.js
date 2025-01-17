@@ -5,6 +5,7 @@ import CalculatorInputs from '../CalculatorInputs';
 
 export default function SICalculator() {
 
+    const initialInvestment = 100000;
     const [principal, setPrincipal] = useState(100000);
     const [rate, setRate] = useState(6.5);
     const [years, setYears] = useState(5);
@@ -26,7 +27,8 @@ export default function SICalculator() {
 
                 <CalculatorInputs
                     amountLabel="ENTER AMOUNT"
-                    amountValue={principal}
+                    // amountValue={principal}
+                    initialInvestment={initialInvestment}
                     onAmountChange={setPrincipal}
                     durationLabel="Select Duration"
                     durationValue={years}

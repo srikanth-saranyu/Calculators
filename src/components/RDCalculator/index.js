@@ -4,7 +4,7 @@ import DoughnutChart from '../DoughnutChart'
 import CalculatorInputs from "../CalculatorInputs";
 
 export default function RDCalculator() {
-
+    const initialInvestment = 50000;
     const [monthlyInvestment, setMonthlyInvestment] = useState(50000);
     const [duration, setDuration] = useState(5);
     const [interestRate, setInterestRate] = useState(6);
@@ -39,7 +39,8 @@ export default function RDCalculator() {
 
                 <CalculatorInputs
                     amountLabel="ENTER AMOUNT"
-                    amountValue={monthlyInvestment}
+                    // amountValue={monthlyInvestment}
+                    initialInvestment={initialInvestment}
                     onAmountChange={setMonthlyInvestment}
                     durationLabel="Select Duration"
                     durationValue={duration}

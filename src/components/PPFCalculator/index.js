@@ -88,7 +88,7 @@ export default function PPFCalculator() {
 
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
-                        <p className="text-dark">The total value of your investment after<b><span>&nbsp;{investmentPeriod} years</span></b> will be</p>
+                        <p className="text-dark">Maturity Amount</p>
                         <span className="amount">₹ {Math.round(maturityAmount).toLocaleString('en-IN')}</span>
                     </div>
 

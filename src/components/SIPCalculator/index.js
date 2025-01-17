@@ -74,7 +74,7 @@ export default function SIPCalculator() {
               )}
             </span>
           </div>
-
+              
           <div className="d-flex flex-row justify-content-center">
             <div className="d-flex justify-content-center align-items-center">
               <DoughnutChart

@@ -5,9 +5,7 @@ import CalculatorInputs from '../CalculatorInputs';
 
 export default function MFRCalculator() {
 
-    // const [investmentAmount, setInvestmentAmount] = useState(100000);
-    // const [rateOfReturn, setRateOfReturn] = useState(6.5);
-    // const [investmentDuration, setInvestmentDuration] = useState(5);
+    const initialInvestment = 100000;
     const [monthlyInvestment, setMonthlyInvestment] = useState(100000);
     const [interestRate, setInterestRate] = useState(6.5);
     const [duration, setDuration] = useState(5);
@@ -30,7 +28,8 @@ export default function MFRCalculator() {
 
                 <CalculatorInputs
                     amountLabel="ENTER AMOUNT"
-                    amountValue={monthlyInvestment}
+                    // amountValue={monthlyInvestment}
+                    initialInvestment={initialInvestment}
                     onAmountChange={setMonthlyInvestment}
                     durationLabel="Select Duration"
                     durationValue={duration}

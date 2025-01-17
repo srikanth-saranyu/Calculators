@@ -5,6 +5,7 @@ import CalculatorInputs from '../CalculatorInputs'
 
 export default function InflationCalculator() {
 
+    const initialInvestment = 100000;
     const [initialAmount, setInitialAmount] = useState(100000);
     const [inflationRate, setInflationRate] = useState(6);
     const [years, setYears] = useState(5);
@@ -27,7 +28,8 @@ export default function InflationCalculator() {
 
                 <CalculatorInputs
                     amountLabel="INITIAL AMOUNT"
-                    amountValue={initialAmount}
+                    // amountValue={initialAmount}
+                    initialInvestment={initialInvestment}
                     onAmountChange={setInitialAmount}
                     durationLabel="Select Duration"
                     durationValue={years}

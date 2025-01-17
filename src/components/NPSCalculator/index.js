@@ -5,6 +5,7 @@ import CalculatorInputs from '../CalculatorInputs'
 
 export default function NPSCalculator() {
 
+    const initialInvestment = 100000;
     const [monthlyInvestment, setMonthlyInvestment] = useState(100000);
     const [investmentPeriod, setInvestmentPeriod] = useState(19);
     const [expectedReturn, setExpectedReturn] = useState(9);
@@ -49,7 +50,8 @@ export default function NPSCalculator() {
 
                 <CalculatorInputs
                     amountLabel="MONTHLY INVESTMENT"
-                    amountValue={monthlyInvestment}
+                    // amountValue={monthlyInvestment}
+                    initialInvestment={initialInvestment}
                     onAmountChange={setMonthlyInvestment}
                     durationLabel="Your Age"
                     durationValue={investmentPeriod}

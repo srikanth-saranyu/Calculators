@@ -4,7 +4,7 @@ import DoughnutChart from '../DoughnutChart'
 import CalculatorInputs from "../CalculatorInputs";
 
 export default function FDCalculator() {
-
+    const initialInvestment = 100000;
     const [principal, setPrincipal] = useState(100000);
     const [interestRate, setInterestRate] = useState(7);
     const [duration, setDuration] = useState(5);
@@ -30,7 +30,8 @@ export default function FDCalculator() {
 
                 <CalculatorInputs
                     amountLabel="ENTER AMOUNT"
-                    amountValue={principal}
+                    // amountValue={principal}
+                    initialInvestment={initialInvestment}
                     onAmountChange={setPrincipal}
                     durationLabel="Select Duration"
                     durationValue={duration}
