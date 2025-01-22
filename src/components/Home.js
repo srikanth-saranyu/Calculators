@@ -177,7 +177,7 @@ export default function Home() {
                 </div>
             </div>
             <div className='row d-flex justify-content-start'>
-            <div className='col-3 mb-4'>
+                <div className='col-3 mb-4'>
                     <Link to="/elss-calculator">
                         <div className="card" style={{ width: "18rem" }}>
                             <img src={imgSrc} class="card-img-top" alt="fund" />
@@ -207,16 +207,91 @@ export default function Home() {
                         </div>
                     </Link>
                 </div>
-                {/* <div className='col-3 mb-4'>
-                    <Link to="/elss-calculator">
+                <div className='col-3 mb-4'>
+                    <Link to="/hra-calculator">
                         <div className="card" style={{ width: "18rem" }}>
                             <img src={imgSrc} class="card-img-top" alt="fund" />
                             <div className="card-body">
-                                <h5 className="card-title">ELSS Calculator</h5>
+                                <h5 className="card-title">HRA Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+            </div>
+            <div className='row d-flex justify-content-start'>
+                <div className='col-3 mb-4'>
+                    <Link to="/gratuity-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">Gratuity Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className='col-3 mb-4'>
+                    <Link to="/gst-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">GST Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className='col-3 mb-4'>
+                    <Link to="/tds-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">TDS Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className='col-3 mb-4'>
+                    <Link to="/ci-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">Compound Interst Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+            </div>
+            <div className='row d-flex justify-content-start'>
+                <div className='col-3 mb-4'>
+                    <Link to="/fv-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">Future Value Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                {/* <div className='col-3 mb-4'>
+                    <Link to="/gst-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">GST Calculator</h5>
                             </div>
                         </div>
                     </Link>
                 </div> */}
+                {/* <div className='col-3 mb-4'>
+                    <Link to="/tds-calculator">
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img src={imgSrc} class="card-img-top" alt="fund" />
+                            <div className="card-body">
+                                <h5 className="card-title">TDS Calculator</h5>
+                            </div>
+                        </div>
+                    </Link>
+                </div> */}
+                
             </div>
         </div>
     )

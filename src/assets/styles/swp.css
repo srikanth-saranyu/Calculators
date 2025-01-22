@@ -3,3 +3,19 @@
     font-weight: 400;
     line-height: 27px;
 }
+
+.ci-button-selected {
+    background-color: rgba(46, 81, 255, 0.16) !important;
+    color: #3f5bd9;
+    font-weight: 600;
+    font-size: 14px;
+    height: 45px;
+}
+
+.ci-button-non-selected {
+    background-color: white !important;
+    font-weight: 600;
+    font-size: 14px;
+    height: 45px;
+}
+

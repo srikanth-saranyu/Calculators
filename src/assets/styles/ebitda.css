@@ -22,3 +22,25 @@
     background-color: transparent;
     padding: 12px;
   }
+
+  .gratuity-child {
+    width: 800px;
+    margin-left: 10px;
+    background: rgb(248, 249, 252);
+  }
+  
+  .gratuity-form {
+    padding: 30px 17px;
+    border-bottom: #bbbdbf;
+    background: #ffffff;
+  }
+
+  .gratuity-container {
+    width: 95%;
+    height: 29%;
+    background: #ffffff;
+    margin-top: 50px;
+    margin-bottom: 60px;
+  }
+
+  

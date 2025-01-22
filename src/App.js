@@ -22,6 +22,12 @@ import APYCalculator from './components/APYCalculator/index.js';
 import ELSSCalculator from './components/ELSSCalculator/index.js';
 import EBITDACalculator from './components/EBITDACalculator/index.js';
 import DYCalculator from './components/DYCalculator/index.js';
+import HRACalculator from './components/HRACalculator/index.js';
+import GratuityCalculator from './components/GratuityCalculator/index.js';
+import GSTCalculator from './components/GSTCalculator/index.js';
+import TDSCalculator from './components/TDSCalculator/index.js';
+import CICalculator from './components/CICalculator/index.js';
+import FVCalculator from './components/FVCalculator/index.js';
 
 
 const nameConverstion = (str) => {
@@ -85,7 +91,12 @@ function App() {
         <Route path="/elss-calculator" element={< ELSSCalculator />} />
         <Route path="/ebitda-calculator" element={< EBITDACalculator />} />
         <Route path="/dy-calculator" element={< DYCalculator />} />
-        
+        <Route path="/hra-calculator" element={< HRACalculator />} />
+        <Route path="/gratuity-calculator" element={< GratuityCalculator />} />
+        <Route path="/gst-calculator" element={< GSTCalculator />} />
+        <Route path="/tds-calculator" element={< TDSCalculator />} />
+        <Route path="/ci-calculator" element={< CICalculator />} />
+        <Route path="/fv-calculator" element={< FVCalculator />} />
 
       </Routes>
 
