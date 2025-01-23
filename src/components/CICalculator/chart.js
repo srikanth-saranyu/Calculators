@@ -22,11 +22,11 @@ export default function CIChart({ principal, rate, duration, compoundsPerYear })
         labels: Array.from({ length: duration }, (_, index) => `Year ${index + 1}`),
         datasets: [
             {
-                label: '',
+                label: 'Compound Interest',
                 data: generateData(),
-                borderColor: 'rgba(255, 99, 132, 1)', // red color for the line 
-                backgroundColor: 'rgba(255, 99, 132, 0.2)', // transparent red for the area
-                fill: false // Don't fill the area under the line
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                fill: false
             }
         ]
     };

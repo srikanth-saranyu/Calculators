@@ -271,27 +271,26 @@ export default function Home() {
                         </div>
                     </Link>
                 </div>
-                {/* <div className='col-3 mb-4'>
-                    <Link to="/gst-calculator">
+                <div className='col-3 mb-4'>
+                    <Link to="/brokerage-calculator">
                         <div className="card" style={{ width: "18rem" }}>
                             <img src={imgSrc} class="card-img-top" alt="fund" />
                             <div className="card-body">
-                                <h5 className="card-title">GST Calculator</h5>
+                                <h5 className="card-title">Brokerage Calculator</h5>
                             </div>
                         </div>
                     </Link>
-                </div> */}
-                {/* <div className='col-3 mb-4'>
-                    <Link to="/tds-calculator">
+                </div>
+                <div className='col-3 mb-4'>
+                    <Link to="/margin-calculator">
                         <div className="card" style={{ width: "18rem" }}>
                             <img src={imgSrc} class="card-img-top" alt="fund" />
                             <div className="card-body">
-                                <h5 className="card-title">TDS Calculator</h5>
+                                <h5 className="card-title">Margin Calculator</h5>
                             </div>
                         </div>
                     </Link>
-                </div> */}
-                
+                </div>
             </div>
         </div>
     )

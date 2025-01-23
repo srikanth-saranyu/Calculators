@@ -12,23 +12,22 @@ export default function FVChart({ pv, interestRate, duration }) {
 
     // Calculate the future values (as numbers)
     const data = years.map((year) => {
-        const r = interestRate / 100; // Convert percentage to decimal
+        const r = interestRate / 100;
         const fv = pv * Math.pow(1 + r, year); // FV = PV * (1 + r)^n
-        return Math.round(fv); // Round off to the nearest integer
+        return Math.round(fv);
     });
 
     // Format data for display (using toLocaleString for formatted values)
-    const formattedData = data.map(value => value.toLocaleString('en-IN'));
+    // const formattedData = data.map(value => value.toLocaleString('en-IN'));
 
-    // Chart data (keep it as numbers)
     const chartData = {
-        labels: years,
+        labels: Array.from({ length: duration }, (_, index) => `Year ${index + 1}`),
         datasets: [
             {
                 label: 'Future Value',
-                data: data, // Use numeric values for chart
-                borderColor: 'rgba(255, 99, 132, 1)', // red color for the line 
-                backgroundColor: 'rgba(255, 99, 132, 0.2)', // transparent red for the area
+                data: data,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 fill: false // Don't fill the area under the line
             }
         ]

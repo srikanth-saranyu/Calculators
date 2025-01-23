@@ -108,7 +108,6 @@ export default function GratuityCalculator() {
                         <span className="fs-4 fw-bold">₹{Math.round(gratuity).toLocaleString('en-IN')}</span>
                     </div>
                 </div>
-
             </div>
 
             <div className="container custom-width">

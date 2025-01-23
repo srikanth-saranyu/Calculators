@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export default function DYCalculator() {
 
@@ -11,7 +11,7 @@ export default function DYCalculator() {
         e.preventDefault();
         if (annualDividend && purchasePrice) {
             const yieldPercentage = (annualDividend / purchasePrice) * 100;
-            setDividendYield(yieldPercentage); 
+            setDividendYield(yieldPercentage);
         }
     };
 
@@ -20,7 +20,7 @@ export default function DYCalculator() {
         setAnnualDividend(100);
         setPurchasePrice(50);
         setDividendYield(200);
-    };  
+    };
 
     return (
         <div className="container">
@@ -28,13 +28,13 @@ export default function DYCalculator() {
             <p className="custom-width">A dividend yield calculator shows you the proportion of dividends paid to you per share compared to the price of the share. It is expressed in percentage terms, and it helps you ascertain an important part of the returns you get from investing in a particular stock.</p>
             <div className="row custom-width">
                 <div className="col-6 p-4">
-                    <form onSubmit={handleSubmit} id="ebitda-form" className="container">
+                    <form onSubmit={handleSubmit} id="dy-form" className="container">
                         <div className="mb-2">
-                            <label htmlFor="ebitda-sales" className="form-child">Enter Annual Dividend</label>
+                            <label htmlFor="dy-sales" className="form-child">Enter Annual Dividend</label>
                             <input
                                 type="number"
                                 placeholder="0"
-                                id="ebitda-sales"
+                                id="dy-sales"
                                 className="form-control p-3"
                                 required
                                 min="1"
@@ -45,11 +45,11 @@ export default function DYCalculator() {
                         </div>
 
                         <div className="mb-2">
-                            <label htmlFor="ebitda-raw" className="form-child">Enter Purchase Price</label>
+                            <label htmlFor="dy-raw" className="form-child">Enter Purchase Price</label>
                             <input
                                 type="number"
                                 placeholder="0"
-                                id="ebitda-raw"
+                                id="dy-raw"
                                 className="form-control p-3"
                                 required
                                 min="1"
@@ -68,7 +68,7 @@ export default function DYCalculator() {
 
                 <div className="col-6">
                     <div className="card shadow-none rounded-3">
-                        <h5 className="card-header text-bg-dark p-4">Result</h5>
+                        <h5 className="card-header text-bg-dark p-4 charges-header">Result</h5>
                         <div
                             className="card-body d-flex justify-content-center align-items-center" style={{ height: "200px" }}
                         >
@@ -79,7 +79,6 @@ export default function DYCalculator() {
                         </div>
                     </div>
                 </div>
- 
             </div>
 
             <div className="container custom-width">

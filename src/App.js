@@ -28,6 +28,8 @@ import GSTCalculator from './components/GSTCalculator/index.js';
 import TDSCalculator from './components/TDSCalculator/index.js';
 import CICalculator from './components/CICalculator/index.js';
 import FVCalculator from './components/FVCalculator/index.js';
+import BrokerageCalculator from './components/BrokerageCalculator/index.js';
+import MarginCalculator from './components/MarginCalculator/index.js';
 
 
 const nameConverstion = (str) => {
@@ -97,6 +99,8 @@ function App() {
         <Route path="/tds-calculator" element={< TDSCalculator />} />
         <Route path="/ci-calculator" element={< CICalculator />} />
         <Route path="/fv-calculator" element={< FVCalculator />} />
+        <Route path="/brokerage-calculator" element={< BrokerageCalculator />} />
+        <Route path="/margin-calculator" element={< MarginCalculator />} />
 
       </Routes>
 

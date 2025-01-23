@@ -1,0 +1,44 @@
+.brok-button-selected {
+    background-color: rgba(46, 81, 255, 0.16) !important;
+    color: #3f5bd9;
+    font-weight: 600;
+    font-size: 14px;
+    height: 45px;
+}
+
+.brok-button-non-selected {
+    background-color: white !important;
+    font-weight: 600;
+    font-size: 14px;
+    height: 45px;
+}
+
+.charges-header {
+    background: #2a394e !important;
+}
+
+.charges-table {
+    font-size: 16px;
+    line-height: 42px;
+}
+
+.netpl {
+    background: rgb(248, 249, 252) !important;
+}
+
+
+table.charges-table td,
+table.charges-table th {
+    padding: 12px;
+    text-align: left;
+}
+
+table.charges-table td:first-child,
+table.charges-table th:first-child {
+    width: 40%;
+}
+
+table.charges-table td:last-child,
+table.charges-table th:last-child {
+    width: 60%;
+}

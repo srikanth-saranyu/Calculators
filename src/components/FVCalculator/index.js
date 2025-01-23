@@ -4,18 +4,18 @@ import FVChart from './chart'
 
 export default function FVCalculator() {
 
-    const [pv, setPv] = useState(100000);  
-    const [interestRate, setInterestRate] = useState(12); 
-    const [duration, setDuration] = useState(5); 
-    const [fv, setFv] = useState(0); 
+    const [pv, setPv] = useState(100000);
+    const [interestRate, setInterestRate] = useState(12);
+    const [duration, setDuration] = useState(5);
+    const [fv, setFv] = useState(0);
 
     // Update Future Value when any input changes
     useEffect(() => {
-        const r = interestRate / 100; 
+        const r = interestRate / 100;
         const calculatedFV = pv * Math.pow(1 + r, duration); // FV = PV * (1 + r)^n
         setFv(calculatedFV);
     }, [pv, interestRate, duration]);
-    
+
 
     return (
         <div className="container">
@@ -105,16 +105,16 @@ export default function FVCalculator() {
 
                 <h2 className="mc-desc-title">How to calculate Future value?</h2>
                 <p>If you are that inclined, you can do the calculations manually without the help of an online calculator. The most basic step would be to calculate simple interest. You don’t need an FV calculator for that.</p>
-                <span><strong>Future value = P + (P*r*t)</strong></span><br/>
-                <span>P = Initial value</span><br/>
-                <span>R= Rate of interest</span><br/>
+                <span><strong>Future value = P + (P*r*t)</strong></span><br />
+                <span>P = Initial value</span><br />
+                <span>R= Rate of interest</span><br />
                 <p>T= Number of years</p>
                 <p>A more complex way would be to calculate the value of the compounded asset. In this case, the formula would be:</p>
-                <span><strong>Future value = P * (1+r)t</strong></span><br/>
-                <span>P = Initial value</span><br/>
-                <span>R= Rate of interest</span><br/>
+                <span><strong>Future value = P * (1+r)t</strong></span><br />
+                <span>P = Initial value</span><br />
+                <span>R= Rate of interest</span><br />
                 <p>T= Duration for which you want to calculate future value (in years)</p>
-                
+
                 <p><strong>Disclaimer: </strong>This calculator is meant for investor education and awareness purpose only and shall not be considered as any recommendation to make investments in the schemes of respective Mutual Fund. Please consult your financial / tax advisor(s) before taking any investment decisions.</p>
                 <p><strong>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</strong></p>
             </div>
