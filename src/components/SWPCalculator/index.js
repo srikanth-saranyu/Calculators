@@ -1,12 +1,22 @@
 import "../../assets/styles/swp.css"
 import React, { useState } from "react";
 
+function formatNumber(value) {
+    if (isNaN(value) || value === "") {
+        return 0;
+    }
+    const formattedValue = parseFloat(value).toLocaleString("en-IN");
+    return formattedValue;
+}
+
+
 export default function SWPCalculator() {
 
     const [principalAmount, setPrincipalAmount] = useState(500000); // ₹1,00,000 initial investment
     const [monthlyWithdrawal, setMonthlyWithdrawal] = useState(10000); // ₹5,000 monthly withdrawal
     const [expectedReturns, setExpectedReturns] = useState(8); // Annual rate of return
     const [duration, setDuration] = useState(5); // Duration in years (12 months)
+    const [displayPrincipalAmount, setDisplayPrincipalAmount] = useState(formatNumber(500000));
 
     const calculateInvestmentDetails = () => {
         const r = expectedReturns / 100; // Convert annual return percentage to decimal
@@ -43,6 +53,14 @@ export default function SWPCalculator() {
 
     const { investedAmount, totalWithdrawal, finalValue } = calculateInvestmentDetails();
 
+    const handleAmountChange = (e) => {
+        const inputValue = e.target.value.replace(/,/g, "");  // Remove commas before processing
+        if (/^\d*\.?\d*$/.test(inputValue)) {  // Allow only numeric input with optional decimal
+            setDisplayPrincipalAmount(formatNumber(inputValue));  // Display formatted value
+            setPrincipalAmount(Number(inputValue));  // Set actual number for calculations
+        }
+    };
+
     return (
         <div className="container">
             <h3 className="custom-width">SWP Calculator</h3>
@@ -57,9 +75,10 @@ export default function SWPCalculator() {
                             <span className="fs-6">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value={principalAmount}
-                                onChange={(e) => setPrincipalAmount(Number(e.target.value))}
-                                style={{ width: "8ch" }} />
+                                maxLength={10}
+                                value={displayPrincipalAmount}  // Use the formatted value here
+                                onChange={handleAmountChange}
+                                style={{ width: "10ch" }} />
 
                         </div>
 
@@ -121,8 +140,6 @@ export default function SWPCalculator() {
                     </div>
                 </div>
 
-
-
                 <div className="col-7 d-flex justify-content-center align-item-center border-start">
                     <div className="text-dark pt-4">
                         <p className="text-dark">Invested Amount:</p>
@@ -132,8 +149,6 @@ export default function SWPCalculator() {
                         <p>Final Value:</p>
                         <p className="amount">₹{Math.round(finalValue).toLocaleString('en-IN')}</p>
                     </div>
-
-
                 </div>
             </div>
             <div className='container custom-width'>

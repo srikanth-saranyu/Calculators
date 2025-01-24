@@ -1,4 +1,5 @@
-import '../styles/home.css'
+// import '../styles/home.css'
+import '../assets/styles/homee.css'
 import { Link } from 'react-router-dom';
 import imgSrc from '../assets/images/images.png';
 

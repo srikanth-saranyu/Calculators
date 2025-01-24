@@ -2,6 +2,15 @@ import "../../assets/styles/sip.css"
 import DoughnutChart from '../DoughnutChart'
 import React, { useState, useEffect } from "react";
 
+function formatNumber(value) {
+    if (isNaN(value) || value === "") {
+        return 0;
+    }
+    const formattedValue = parseFloat(value).toLocaleString("en-IN");
+    return formattedValue;
+}
+
+
 export default function EPFCalculator() {
 
     const [basicPay, setBasicPay] = useState(100000);
@@ -14,6 +23,14 @@ export default function EPFCalculator() {
     useEffect(() => {
         setDuration(retirementAge - age);
     }, [age, retirementAge]);
+
+    const handleAmountChange = (e) => {
+        const inputValue = e.target.value.replace(/,/g, ""); // Remove commas first
+        // Allow only numeric input (with optional decimal point)
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setBasicPay(Number(inputValue)); // Update the basicPay with the numeric value
+        }
+    };
 
     // Calculate monthly EPF contribution (Employee + Employer)
     const calculateContributions = (basicSalary) => {
@@ -73,9 +90,10 @@ export default function EPFCalculator() {
                             <span className="fs-6">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value={basicPay}
-                                onChange={(e) => setBasicPay(Number(e.target.value))}
-                                style={{ width: "8ch" }} />
+                                maxLength={10}
+                                value={formatNumber(basicPay)}  // Display formatted number
+                                onChange={handleAmountChange}  // Call handleAmountChange on change
+                                style={{ width: "10ch" }} />
 
                         </div>
 

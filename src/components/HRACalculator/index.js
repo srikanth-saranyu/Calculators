@@ -12,6 +12,24 @@ export default function HRACalculator() {
     const [taxableHRA, setTaxableHRA] = useState(145000);
     const [exemptedHRA, setExemptedHRA] = useState(105000);
 
+    // Function to format number to Indian format
+    function formatNumber(value) {
+        if (isNaN(value) || value === "") {
+            return 0;
+        }
+        const formattedValue = parseFloat(value).toLocaleString("en-IN");
+        return formattedValue;
+    }
+
+    // Helper function to handle only numeric input for the amount field
+    const handleAmountChange = (e, setterFunction) => {
+        const inputValue = e.target.value.replace(/,/g, "");  // Remove any existing commas
+        // Allow only numeric input (with optional decimal point)
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setterFunction(Number(inputValue));
+        }
+    };
+
     const handleCalculate = (e) => {
         e.preventDefault();
 
@@ -39,31 +57,30 @@ export default function HRACalculator() {
                         <div className="mb-2">
                             <label htmlFor="basic-salary" className="form-child">Basic Salary (P.A)</label>
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="0"
                                 id="basic-salary"
                                 className="form-control p-3"
                                 required
                                 min="1"
                                 maxLength="7"
-                                value={basicSalary}
-                                onChange={(e) => setBasicSalary(Number(e.target.value))}
-
+                                value={formatNumber(basicSalary)}  // Format it as you type
+                                onChange={(e) => handleAmountChange(e, setBasicSalary)}
                             />
                         </div>
 
                         <div className="mb-2">
                             <label htmlFor="dearness-allowance" className="form-child">Dearness allowance (P.A)</label>
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="0"
                                 id="dearness-allowance"
                                 className="form-control p-3"
                                 required
                                 min="0"
                                 maxLength="7"
-                                value={dearnessAllowance}
-                                onChange={(e) => setDearnessAllowance(Number(e.target.value))}
+                                value={formatNumber(dearnessAllowance)}  // Format it as you type
+                                onChange={(e) => handleAmountChange(e, setDearnessAllowance)}
 
                             />
                         </div>
@@ -71,15 +88,15 @@ export default function HRACalculator() {
                         <div className="mb-2">
                             <label htmlFor="hra-received" className="form-child">HRA received (P.A)</label>
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="0"
                                 id="hra-received"
                                 className="form-control p-3"
                                 required
                                 min="1"
                                 maxLength="7"
-                                value={hraReceived}
-                                onChange={(e) => setHraReceived(Number(e.target.value))}
+                                value={formatNumber(hraReceived)}  // Format it as you type
+                                onChange={(e) => handleAmountChange(e, setHraReceived)}
 
                             />
                         </div>
@@ -87,15 +104,15 @@ export default function HRACalculator() {
                         <div className="mb-2">
                             <label htmlFor="rent-paid" className="form-child">Total Rent Paid (P.A)</label>
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="0"
                                 id="rent-paid"
                                 className="form-control p-3"
                                 required
                                 min="1"
                                 maxLength="7"
-                                value={rentPaid}
-                                onChange={(e) => setRentPaid(Number(e.target.value))}
+                                value={formatNumber(rentPaid)}  // Format it as you type
+                                onChange={(e) => handleAmountChange(e, setRentPaid)}
 
                             />
                         </div>
@@ -123,7 +140,7 @@ export default function HRACalculator() {
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
                         <p className="text-dark mb-0">Taxable HRA</p>
-                        <span className="amount">₹{taxableHRA.toLocaleString('en-IN')}</span>
+                        <span className="amount">₹{Math.round(taxableHRA).toLocaleString('en-IN')}</span>
                     </div>
                     <div className="d-flex flex-row justify-content-center">
                         <div className="d-flex justify-content-center align-items-center">
@@ -132,14 +149,14 @@ export default function HRACalculator() {
                         <div className="d-flex flex-column justify-content-center w-23 ms-5">
                             <div className="border-start border-5 border-investedOrange">
                                 <p className="text-muted ms-2 mb-0">Taxable HRA</p>
-                                <p className="fs-5 fw-semibold ms-2">₹{taxableHRA.toLocaleString('en-IN')}</p>
+                                <p className="fs-5 fw-semibold ms-2">₹{Math.round(taxableHRA).toLocaleString('en-IN')}</p>
                             </div>
                             <div className="border-start border-5 border-returnsBlue mt-2">
                                 <p className="text-muted ms-2 mb-0">Exempted HRA</p>
-                                <p className="fs-5 fw-semibold ms-2">₹{exemptedHRA.toLocaleString('en-IN')}</p>
+                                <p className="fs-5 fw-semibold ms-2">₹{Math.round(exemptedHRA).toLocaleString('en-IN')}</p>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
 

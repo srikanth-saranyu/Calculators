@@ -3,12 +3,14 @@ import "../../assets/styles/gst.css"
 
 export default function TDSCalculator() {
 
+
     const [paymentAmount, setPaymentAmount] = useState(100000);
     const [natureOfPayment, setNatureOfPayment] = useState("194A-interest from banks");
     const [recipientType, setRecipientType] = useState("individual");
     const [panAvailable, setPanAvailable] = useState("yes");
     const [tdsAmount, setTdsAmount] = useState(null);
     const [errorMessage, setErrorMessage] = useState("");
+    const [displayValue, setDisplayValue] = useState(formatNumber(paymentAmount));
 
     // Function to handle calculation
     const calculateTDS = () => {
@@ -42,6 +44,25 @@ export default function TDSCalculator() {
         setTdsAmount(totalTDS);
     };
 
+    // Format number function
+    function formatNumber(value) {
+        if (isNaN(value) || value === "") {
+            return 0;
+        }
+        const formattedValue = parseFloat(value).toLocaleString("en-IN");
+        return formattedValue;
+    }
+
+    // Handle amount input change
+    const handleAmountChange = (e) => {
+        const inputValue = e.target.value.replace(/,/g, ""); // Remove commas
+        // Allow only numeric input (with optional decimal point)
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setPaymentAmount(inputValue);  // Update raw value without formatting
+            setDisplayValue(formatNumber(inputValue)); // Set the formatted value
+        }
+    };
+
 
     return (
         <div className="container">
@@ -55,26 +76,36 @@ export default function TDSCalculator() {
                             <span className="fs-5">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value={paymentAmount}
-                                onChange={(e) => setPaymentAmount(e.target.value)}
-                                style={{ width: "8ch" }} />
+                                maxLength={10}
+                                value={displayValue}
+                                onChange={handleAmountChange}
+                                style={{ width: "10ch" }} />
                         </div>
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="nature-of-payment" className="mt-4 form-label text-muted">Nature of Payment / Section</label>
-                        <div className="dropdown">
-                            <button className="d-flex align-items-center select-trigger border rounded dropdown-toggle w-100" type="button" id="nature-of-payment" data-bs-toggle="dropdown" aria-expanded="false"
-                                onClick={(e) => setNatureOfPayment(e.target.innerText)}>
-                                Select an option
-                            </button>
-                            <ul className="dropdown-menu w-100" aria-labelledby="nature-of-payment">
-                                <li><a className="dropdown-item" href="#" onChange={() => setNatureOfPayment("salary")}>1940 Payment for sale of goods or provision of services by e-commerce operator</a></li>
-                                <li><a className="dropdown-item" href="#" >1940 - Pre Mature withdrawal from EPF</a></li>
-                                <li><a className="dropdown-item" href="#">Dividend other than dividend as referred to in section 115-0</a></li>
-                                <li><a className="dropdown-item" href="#" onChange={() => setNatureOfPayment("interest")}>194A-interest from banks</a></li>
-                            </ul>
-                        </div>
+                        <select
+                            id="nature-of-payment"
+                            className="form-select p-3"
+                            required
+                            // value={exchange}
+                            onChange={(e) => setNatureOfPayment(e.target.value)}
+                        >
+                            <option value="Section 192A - Payment of accumulated PF balance to an employee">
+                                Section 192A - Payment of accumulated PF balance to an employee
+                            </option>
+                            <option value="Section 193 - Interest on Securities">
+                                Section 193 - Interest on Securities
+                            </option>
+                            <option value="Section 194 - Dividend other than the Dividend as referred to in & Section 115-O">
+                                Section 194 - Dividend other than the Dividend as referred to in & Section 115-O
+                            </option>
+                            <option value="Section 194A - Interest other than Banks">
+                                Section 194A - Interest other than Banks
+                            </option>
+                        </select>
+
                     </div>
 
                     <div className="mb-3 mt-3">
@@ -117,7 +148,8 @@ export default function TDSCalculator() {
                     </div>
                 </div>
 
-                {tdsAmount && (
+                {/* Conditionally render the TDS result container */}
+                {tdsAmount !== null && (
                     <div className="container tds-container d-flex justify-content-center align-items-center border rounded py-4">
                         <div className="p-4 text-center">
                             <p className="m-0 text-dark p-2">Total Applicable TDS</p>

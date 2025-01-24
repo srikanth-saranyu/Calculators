@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
 
 // Registering necessary components from Chart.js
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
 export default function FVChart({ pv, interestRate, duration }) {
     // Generate years array
@@ -28,7 +28,7 @@ export default function FVChart({ pv, interestRate, duration }) {
                 data: data,
                 borderColor: 'rgba(255, 99, 132, 1)',
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                fill: false // Don't fill the area under the line
+                fill: 'start'
             }
         ]
     };
@@ -47,7 +47,8 @@ export default function FVChart({ pv, interestRate, duration }) {
                     display: true,
                     text: 'Total Amount (₹)'
                 }
-            }
+            },
+            stacked: true
         },
         plugins: {
             tooltip: {

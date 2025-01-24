@@ -8,6 +8,38 @@ export default function CAGRCalculator() {
     const [finalValue, setFinalValue] = useState(25000);
     const [duration, setDuration] = useState(5);
 
+    // Function to format numbers as per Indian numbering system
+    function formatNumber(value) {
+        if (isNaN(value) || value === "") {
+            return 0;
+        }
+        const formattedValue = parseFloat(value).toLocaleString("en-IN");
+        return formattedValue;
+    }
+
+    // Handle numeric input change and update formatted value
+    const handleAmountChange = (e, type) => {
+        const inputValue = e.target.value.replace(/,/g, "");
+        // Allow only numeric input (with optional decimal point)
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            const numericValue = Number(inputValue); // raw numeric value
+            const formattedValue = formatNumber(inputValue); // formatted value for display
+
+            if (type === "initial") {
+                setInitialInvestment(numericValue); // store raw numeric value
+            } else if (type === "final") {
+                setFinalValue(numericValue); // store raw numeric value
+            }
+
+            // Update the input field with the formatted value
+            if (type === "initial") {
+                e.target.value = formattedValue;
+            } else if (type === "final") {
+                e.target.value = formattedValue;
+            }
+        }
+    };
+
     const calculateCAGR = (startValue, endValue, years) => {
         if (startValue <= 0 || endValue <= 0 || years <= 0) return 0;
         return ((Math.pow(endValue / startValue, 1 / years) - 1) * 100).toFixed(2);
@@ -30,9 +62,10 @@ export default function CAGRCalculator() {
                             <span className="fs-6">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value={initialInvestment}
-                                onChange={(e) => setInitialInvestment(e.target.value)}
-                                style={{ width: "8ch" }} />
+                                maxLength={10}
+                                value={formatNumber(initialInvestment)}
+                                onChange={(e) => handleAmountChange(e, "initial")}
+                                style={{ width: "10ch" }} />
 
                         </div>
 
@@ -43,9 +76,10 @@ export default function CAGRCalculator() {
                             <span className="fs-6">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value={finalValue}
-                                onChange={(e) => setFinalValue(e.target.value)}
-                                style={{ width: "8ch" }} />
+                                maxLength={10}
+                                value={formatNumber(finalValue)}
+                                onChange={(e) => handleAmountChange(e, "final")}
+                                style={{ width: "10ch" }} />
 
                         </div>
 

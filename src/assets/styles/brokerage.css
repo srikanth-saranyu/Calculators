@@ -42,3 +42,11 @@ table.charges-table td:last-child,
 table.charges-table th:last-child {
     width: 60%;
 }
+
+.margin-table {
+    font-size: 15px;
+    line-height: 30px;
+    color: #777d87;
+    font-weight: normal !important;
+}
+

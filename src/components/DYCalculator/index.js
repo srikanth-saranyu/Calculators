@@ -6,6 +6,23 @@ export default function DYCalculator() {
     const [purchasePrice, setPurchasePrice] = useState(50);
     const [dividendYield, setDividendYield] = useState(200);
 
+    // Function to format number to Indian format
+    function formatNumber(value) {
+        if (isNaN(value) || value === "") {
+            return 0;
+        }
+        const formattedValue = parseFloat(value).toLocaleString("en-IN");
+        return formattedValue;
+    }
+
+    // Helper function to handle only numeric input for the amount field
+    const handleAmountChange = (e, setterFunction) => {
+        const inputValue = e.target.value.replace(/,/g, ""); // Remove any existing commas
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setterFunction(Number(inputValue));
+        }
+    };
+
     // Function to handle form submission and calculate dividend yield
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,30 +49,30 @@ export default function DYCalculator() {
                         <div className="mb-2">
                             <label htmlFor="dy-sales" className="form-child">Enter Annual Dividend</label>
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="0"
                                 id="dy-sales"
                                 className="form-control p-3"
                                 required
                                 min="1"
                                 maxLength="7"
-                                value={annualDividend}
-                                onChange={(e) => setAnnualDividend(e.target.value)}
+                                value={formatNumber(annualDividend)} // Format it as you type
+                                onChange={(e) => handleAmountChange(e, setAnnualDividend)}
                             />
                         </div>
 
                         <div className="mb-2">
                             <label htmlFor="dy-raw" className="form-child">Enter Purchase Price</label>
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="0"
                                 id="dy-raw"
                                 className="form-control p-3"
                                 required
                                 min="1"
                                 maxLength="7"
-                                value={purchasePrice}
-                                onChange={(e) => setPurchasePrice(e.target.value)}
+                                value={formatNumber(purchasePrice)} // Format it as you type
+                                onChange={(e) => handleAmountChange(e, setPurchasePrice)}
                             />
                         </div>
 

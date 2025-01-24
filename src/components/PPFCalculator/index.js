@@ -2,20 +2,27 @@ import "../../assets/styles/sip.css"
 import DoughnutChart from '../DoughnutChart'
 import React, { useState, useEffect } from "react";
 
+function formatNumber(value) {
+    if (isNaN(value) || value === "") {
+        return 0;
+    }
+    const formattedValue = parseFloat(value).toLocaleString("en-IN");
+    return formattedValue;
+}
 
 export default function PPFCalculator() {
 
-    const [investmentAmount, setInvestmentAmount] = useState(100000); 
+    const [investmentAmount, setInvestmentAmount] = useState(100000);
     // const [interestRate, setInterestRate] = useState(0); // Rate of interest
-    const [investmentPeriod, setInvestmentPeriod] = useState(15); 
-    const [maturityAmount, setMaturityAmount] = useState(0); 
+    const [investmentPeriod, setInvestmentPeriod] = useState(15);
+    const [maturityAmount, setMaturityAmount] = useState(0);
 
     const interestRate = 7.1
     // Function to calculate PPF maturity amount using the formula
     const calculateMaturityAmount = () => {
-        const i = interestRate / 100; 
-        const n = investmentPeriod; 
-        const P = investmentAmount; 
+        const i = interestRate / 100;
+        const n = investmentPeriod;
+        const P = investmentAmount;
 
         // Apply the PPF formula: F = P * [((1 + i) ^ n - 1) / i]
         const futureValue = P * (((Math.pow(1 + i, n) - 1) / i));
@@ -28,6 +35,15 @@ export default function PPFCalculator() {
             calculateMaturityAmount();
         }
     }, [investmentAmount, interestRate, investmentPeriod]);
+
+    // Handle amount input change with number formatting
+    const handleAmountChange = (e) => {
+        const inputValue = e.target.value.replace(/,/g, "");
+        // Allow only numeric input (with optional decimal point)
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setInvestmentAmount(Number(inputValue));
+        }
+    };
 
     return (
 
@@ -45,9 +61,10 @@ export default function PPFCalculator() {
                             <span className="fs-6">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value={investmentAmount}
-                                onChange={(e) => setInvestmentAmount(Number(e.target.value))}
-                                style={{ width: "8ch" }} />
+                                maxLength={10}
+                                value={formatNumber(investmentAmount)}
+                                onChange={handleAmountChange}
+                                style={{ width: "10ch" }} />
                         </div>
 
                     </div>
@@ -129,9 +146,9 @@ export default function PPFCalculator() {
                 <p>P is the amount invested annually</p>
 
                 <p>Let us consider an example to calculate the PPF investment manually. Suppose starting April 2022 you are investing ₹50,000 for the wedding expenses of your child in a PPF account with an annual interest rate of 7.1% for 15 years.</p>
-                
 
-                    <p><strong>Disclaimer: </strong>This calculator is meant for investor education and awareness purpose only and shall not be considered as any recommendation to make investments in the schemes of respective Mutual Fund. Please consult your financial / tax advisor(s) before taking any investment decisions.</p>
+
+                <p><strong>Disclaimer: </strong>This calculator is meant for investor education and awareness purpose only and shall not be considered as any recommendation to make investments in the schemes of respective Mutual Fund. Please consult your financial / tax advisor(s) before taking any investment decisions.</p>
                 <p><strong>Mutual fund investments are subject to market risks, read all scheme related documents carefully.</strong></p>
             </div>
 

@@ -11,6 +11,23 @@ export default function EBITDACalculator() {
     const [ebitda, setEbitda] = useState(null);
     const [ebitdaPercentage, setEbitdaPercentage] = useState(20);
 
+    // Function to format number to Indian format
+    function formatNumber(value) {
+        if (isNaN(value) || value === "") {
+            return 0;
+        }
+        const formattedValue = parseFloat(value).toLocaleString("en-IN");
+        return formattedValue;
+    }
+
+    // Helper function to handle only numeric input for the amount field
+    const handleAmountChange = (e, setterFunction) => {
+        const inputValue = e.target.value.replace(/,/g, ""); // Remove any existing commas
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setterFunction(Number(inputValue));
+        }
+    };
+
     // Handle form submission to calculate EBITDA
     const handleCalculate = (e) => {
         e.preventDefault();
@@ -39,60 +56,60 @@ export default function EBITDACalculator() {
                         <div className="mb-2">
                             <label htmlFor="ebitda-sales" className="form-child">Sales (₹)</label>
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="0"
                                 id="ebitda-sales"
                                 className="form-control p-3"
                                 required
                                 min="1"
                                 maxLength="7"
-                                value={sales}
-                                onChange={(e) => setSales(e.target.value)}
+                                value={formatNumber(sales)} // Format it as you type
+                                onChange={(e) => handleAmountChange(e, setSales)}
                             />
                         </div>
 
                         <div className="mb-2">
                             <label htmlFor="ebitda-raw" className="form-child">Raw Material Costs (₹)</label>
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="0"
                                 id="ebitda-raw"
                                 className="form-control p-3"
                                 required
                                 min="1"
                                 maxLength="7"
-                                value={rawMaterial}
-                                onChange={(e) => setRawMaterial(e.target.value)}
+                                value={formatNumber(rawMaterial)} // Display formatted value
+                                onChange={(e) => handleAmountChange(e, setRawMaterial)}
                             />
                         </div>
 
                         <div className="mb-2">
                             <label htmlFor="ebitda-employee" className="form-child">Employee Costs (₹)</label>
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="0"
                                 id="ebitda-employee"
                                 className="form-control p-3"
                                 required
                                 min="1"
                                 maxLength="7"
-                                value={employeeCosts}
-                                onChange={(e) => setEmployeeCosts(e.target.value)}
+                                value={formatNumber(employeeCosts)} // Display formatted value
+                                onChange={(e) => handleAmountChange(e, setEmployeeCosts)}
                             />
                         </div>
 
                         <div className="mb-2">
                             <label htmlFor="ebitda-other-expense" className="form-child">Other Operating Expenses (₹)</label>
                             <input
-                                type="number"
+                                type="text"
                                 placeholder="0"
                                 id="ebitda-other-expense"
                                 className="form-control p-3"
                                 required
                                 min="1"
                                 maxLength="7"
-                                value={otherExpenses}
-                                onChange={(e) => setOtherExpenses(e.target.value)}
+                                value={formatNumber(otherExpenses)} // Display formatted value
+                                onChange={(e) => handleAmountChange(e, setOtherExpenses)}
                             />
                         </div>
 

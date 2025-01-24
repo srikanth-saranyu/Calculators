@@ -10,6 +10,25 @@ export default function CICalculator() {
     const [duration, setDuration] = useState(5);
     const [compoundsPerYear, setCompoundsPerYear] = useState(12);
 
+    // Format a number as a string with commas for thousands
+    function formatNumber(value) {
+        if (isNaN(value) || value === "") {
+            return 0;
+        }
+        const formattedValue = parseFloat(value).toLocaleString("en-IN");
+        return formattedValue;
+    }
+
+    // Helper function to handle only numeric input for the amount field
+    const handleAmountChange = (e) => {
+        const inputValue = e.target.value.replace(/,/g, ""); // Remove any commas
+
+        // Allow only numeric input (with optional decimal point)
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setPrincipal(Number(inputValue)); // Update the actual principal value
+        }
+    };
+
     // Calculate compound interest using the formula: A = P(1 + r/n) ^ nt
     const calculateCompoundInterest = () => {
         const P = principal;
@@ -42,9 +61,10 @@ export default function CICalculator() {
                             <span className="fs-5">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value={principal}
-                                onChange={(e) => setPrincipal(Number(e.target.value))}
-                                style={{ width: "8ch" }} />
+                                maxLength={10}
+                                value={formatNumber(principal)}  // Format the value to show commas
+                                onChange={handleAmountChange}
+                                style={{ width: "10ch" }} />
                         </div>
                     </div>
 

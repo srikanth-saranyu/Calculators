@@ -12,12 +12,32 @@ export default function TopUpCalculator() {
     const [totalValue, setTotalValue] = useState(0);
     const [totalInvested, setTotalInvested] = useState(0);
     const [estimatedReturns, setEstimatedReturns] = useState(0);
+    const [displayValue, setDisplayValue] = useState(formatNumber(monthlyInvestment));
 
     useEffect(() => {
 
         calculateInvestment();
         // eslint-disable-next-line
     }, [monthlyInvestment, investmentPeriod, annualTopUp, expectedReturn]);
+
+    // Format number with commas for the Indian numbering system
+    function formatNumber(value) {
+        if (isNaN(value) || value === "") {
+            return 0;
+        }
+        const formattedValue = parseFloat(value).toLocaleString("en-IN");
+        return formattedValue;
+    }
+
+    // Handle the amount change in the input field
+    const handleAmountChange = (e) => {
+        const inputValue = e.target.value.replace(/,/g, ""); // Remove commas
+        // Allow only numeric input (with an optional decimal point)
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setMonthlyInvestment(inputValue); // Set the numeric value without commas
+            setDisplayValue(formatNumber(inputValue)); // Set the formatted value with commas for display
+        }
+    };
 
 
     const calculateInvestment = () => {
@@ -55,9 +75,10 @@ export default function TopUpCalculator() {
                             <span className="fs-6">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value={monthlyInvestment}
-                                onChange={(e) => setMonthlyInvestment(e.target.value)}
-                                style={{ width: "8ch" }} />
+                                maxLength={10}
+                                value={displayValue} // Display the formatted value
+                                onChange={handleAmountChange} // Use handleAmountChange
+                                style={{ width: "10ch" }} />
 
                         </div>
 

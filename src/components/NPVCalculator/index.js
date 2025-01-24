@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import "../../assets/styles/npv.css"
 
+function formatNumber(value) {
+    if (isNaN(value) || value === "") {
+        return "0"; // Returning "0" as a string for consistency
+    }
+    const formattedValue = parseFloat(value).toLocaleString("en-IN");
+    return formattedValue;
+}
+
+
 export default function NPVCalculator() {
 
     const [totalInvestment, setTotalInvestment] = useState(500000);
@@ -15,6 +24,7 @@ export default function NPVCalculator() {
 
     // State to track which cash inflow type is selected
     const [cashFlowType, setCashFlowType] = useState('fixed');
+    const [displayValue, setDisplayValue] = useState(formatNumber(totalInvestment));
 
     useEffect(() => {
         let totalNPV = 0;
@@ -28,6 +38,15 @@ export default function NPVCalculator() {
         setNpv(totalNPV - totalInvestment); // Subtract the initial investment to get the NPV
 
     }, [totalInvestment, discountRate, duration, cashFlows]);
+
+    const handleAmountChange = (e) => {
+        const inputValue = e.target.value.replace(/,/g, ""); // Remove commas
+        // Allow only numeric input (with an optional decimal point)
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setTotalInvestment(inputValue); // Set the numeric value without commas
+            setDisplayValue(formatNumber(inputValue)); // Set the formatted value with commas for display
+        }
+    };
 
     // Handle the slider change for fixed cash flow per annum
     const handleFixedCashFlowChange = (value) => {
@@ -57,9 +76,10 @@ export default function NPVCalculator() {
                             <span className="fs-6">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value={totalInvestment}
-                                onChange={(e) => setTotalInvestment(Number(e.target.value))}
-                                style={{ width: "8ch" }} />
+                                maxLength={10}
+                                value={displayValue} // Display the formatted value
+                                onChange={handleAmountChange} // Use handleAmountChange
+                                style={{ width: "10ch" }} />
 
                         </div>
 

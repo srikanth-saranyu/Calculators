@@ -138,9 +138,48 @@ export default function MarginCalculator() {
                 </div>
 
                 <div className="col-6">
-                    <h5 className="card-header border rounded-top text-bg-dark p-4 charges-header">Combined Margin Requirements</h5>
-
+                    <h5 className="card-header border rounded-top text-bg-dark p-3 charges-header">Combined Margin Requirements</h5>
+                    <table className="table table-bordered" style={{ height: "170px" }}>
+                        <tbody className="charges-table">
+                            <tr>
+                                <td>Span Margin</td>
+                                <td>₹12.22</td>
+                            </tr>
+                            <tr>
+                                <td>Exposure Margin</td>
+                                <td>₹232</td>
+                            </tr>
+                            <tr className="fw-bold">
+                                <td className="netpl">Total</td>
+                                <td className="netpl">₹21893</td>
+                            </tr>
+                        </tbody>
+                    </table> 
                 </div>
+            </div>
+
+            <div className="col-12 mt-4">
+            <table className="table table-bordered">
+                <thead className="margin-table">
+                <tr className="text-muted">
+                                <th>Exchange</th>
+                                <th>Symbol</th>
+                                <th>Product</th>
+                                <th>Strike</th>
+                                <th>Instrument Type</th>
+                                <th>Trade Type</th>
+                                <th>Option Type</th>
+                                <th>QTY</th>
+                                <th>Initial Margin</th>
+                                <th>Exposure</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
             </div>
 
             <div className="container custom-width">

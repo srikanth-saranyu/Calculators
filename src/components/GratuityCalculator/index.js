@@ -9,6 +9,24 @@ export default function GratuityCalculator() {
     const [tds, setTds] = useState(0);
     const [averageTaxRate, setAverageTaxRate] = useState(0);
 
+    // Function to format number to Indian format
+    function formatNumber(value) {
+        if (isNaN(value) || value === "") {
+            return 0;
+        }
+        const formattedValue = parseFloat(value).toLocaleString("en-IN");
+        return formattedValue;
+    }
+
+    // Helper function to handle only numeric input for the amount field
+    const handleAmountChange = (e, setterFunction) => {
+        const inputValue = e.target.value.replace(/,/g, "");  // Remove any existing commas
+        // Allow only numeric input (with optional decimal point)
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setterFunction(Number(inputValue));
+        }
+    };
+
     // Function to calculate Gratuity
     const calculateGratuity = () => {
         if (salary > 0 && yearsOfService >= 5) {
@@ -60,8 +78,8 @@ export default function GratuityCalculator() {
         calculateTds();
         // eslint-disable-next-line
     }, [salary, yearsOfService]);
-    console.log(tds)
-    console.log(averageTaxRate)
+    // console.log(tds)
+    // console.log(averageTaxRate)
 
     return (
         <div className="container">
@@ -72,15 +90,15 @@ export default function GratuityCalculator() {
                     <div className="col-md-6">
                         <label htmlFor="gratuity-sales">Monthly Salary (Basic + Dearness allowance)</label>
                         <input
-                            type="number"
+                            type="text"
                             placeholder="0"
                             id="gratuity-sales"
                             className="form-control p-3"
                             required
                             min="1"
-                            maxLength="7"
-                            value={salary}
-                            onChange={(e) => setSalary(Number(e.target.value))}
+                            maxLength="10"
+                            value={formatNumber(salary)}
+                            onChange={(e) => handleAmountChange(e, setSalary)}
 
                         />
                     </div>
@@ -88,15 +106,15 @@ export default function GratuityCalculator() {
                     <div className="col-md-6">
                         <label htmlFor="gratuity-raw">Years of Service (Minimum 5 Years)</label>
                         <input
-                            type="number"
+                            type="text"
                             placeholder="0"
                             id="gratuity-raw"
                             className="form-control p-3"
                             required
                             min="0"
-                            maxLength="7"
-                            value={yearsOfService}
-                            onChange={(e) => setYearsOfService(Number(e.target.value))}
+                            maxLength="3"
+                            value={formatNumber(yearsOfService)}
+                            onChange={(e) => handleAmountChange(e, setYearsOfService)}
 
                         />
                     </div>

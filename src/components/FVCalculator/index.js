@@ -2,12 +2,32 @@ import "../../assets/styles/swp.css"
 import React, { useState, useEffect } from "react";
 import FVChart from './chart'
 
+
 export default function FVCalculator() {
 
     const [pv, setPv] = useState(100000);
     const [interestRate, setInterestRate] = useState(12);
     const [duration, setDuration] = useState(5);
     const [fv, setFv] = useState(0);
+
+    // Format a number as a string with commas for thousands
+    function formatNumber(value) {
+        if (isNaN(value) || value === "") {
+            return 0;
+        }
+        const formattedValue = parseFloat(value).toLocaleString("en-IN");
+        return formattedValue;
+    }
+
+    // Helper function to handle only numeric input for the amount field
+    const handleAmountChange = (e) => {
+        const inputValue = e.target.value.replace(/,/g, ""); // Remove any commas
+
+        // Allow only numeric input (with optional decimal point)
+        if (/^\d*\.?\d*$/.test(inputValue)) {
+            setPv(Number(inputValue)); // Update the actual principal value
+        }
+    };
 
     // Update Future Value when any input changes
     useEffect(() => {
@@ -28,9 +48,10 @@ export default function FVCalculator() {
                             <span className="fs-5">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
-                                value={pv}
-                                onChange={(e) => setPv(e.target.value)}
-                                style={{ width: "8ch" }} />
+                                maxLength={10}
+                                value={formatNumber(pv)}
+                                onChange={handleAmountChange}
+                                style={{ width: "10ch" }} />
                         </div>
                     </div>
 

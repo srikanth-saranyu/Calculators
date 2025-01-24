@@ -39,7 +39,7 @@ export default function HRAChart({ taxableHRA, exemptedHRA }) {
 
                         // Format and return the tooltip string
                         if (tooltipItem.dataIndex === 0) {
-                            return `Taxable HRA ₹${value.toLocaleString('en-IN')}`;
+                            return `Taxable HRA ₹${Math.round(value).toLocaleString('en-IN')}`;
                         } else if (tooltipItem.dataIndex === 1) {
                             return `Exempted HRA ₹${Math.round(value).toLocaleString('en-IN')}`;
                         }
