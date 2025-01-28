@@ -52,7 +52,7 @@ export default function DYCalculator() {
                                 type="text"
                                 placeholder="0"
                                 id="dy-sales"
-                                className="form-control p-3"
+                                className="form-control p-3 input-shadow"
                                 required
                                 min="1"
                                 maxLength="7"
@@ -67,7 +67,7 @@ export default function DYCalculator() {
                                 type="text"
                                 placeholder="0"
                                 id="dy-raw"
-                                className="form-control p-3"
+                                className="form-control p-3 input-shadow"
                                 required
                                 min="1"
                                 maxLength="7"

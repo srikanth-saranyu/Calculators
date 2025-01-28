@@ -59,7 +59,7 @@ export default function EBITDACalculator() {
                                 type="text"
                                 placeholder="0"
                                 id="ebitda-sales"
-                                className="form-control p-3"
+                                className="form-control p-3 input-shadow"
                                 required
                                 min="1"
                                 maxLength="7"
@@ -74,7 +74,7 @@ export default function EBITDACalculator() {
                                 type="text"
                                 placeholder="0"
                                 id="ebitda-raw"
-                                className="form-control p-3"
+                                className="form-control p-3 input-shadow"
                                 required
                                 min="1"
                                 maxLength="7"
@@ -89,7 +89,7 @@ export default function EBITDACalculator() {
                                 type="text"
                                 placeholder="0"
                                 id="ebitda-employee"
-                                className="form-control p-3"
+                                className="form-control p-3 input-shadow"
                                 required
                                 min="1"
                                 maxLength="7"
@@ -104,7 +104,7 @@ export default function EBITDACalculator() {
                                 type="text"
                                 placeholder="0"
                                 id="ebitda-other-expense"
-                                className="form-control p-3"
+                                className="form-control p-3 input-shadow"
                                 required
                                 min="1"
                                 maxLength="7"

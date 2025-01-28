@@ -5,7 +5,7 @@ import CalculatorInputs from '../CalculatorInputs';
 
 export default function EMICalculator() {
 
-    const initialInvestment = 5000000;
+    const initialInvestment = 100000;
     const [loanAmount, setLoanAmount] = useState(100000);
     const [interestRate, setInterestRate] = useState(6);
     const [loanDuration, setLoanDuration] = useState(5);
@@ -32,7 +32,7 @@ export default function EMICalculator() {
             <div className="row border rounded custom-width">
                 
                 <CalculatorInputs
-                    amountLabel="ENTER LOAN AMOUNT"
+                    amountLabel="LOAN AMOUNT"
                     // amountValue={loanAmount}
                     initialInvestment={initialInvestment}
                     onAmountChange={setLoanAmount}

@@ -100,10 +100,10 @@ export default function Brokerage({ Delivery, Intraday }) {
                             <div className="col-md-6">
                                 <label htmlFor="brokerage-sales" className="form-child">Buy</label>
                                 <input
-                                    type="number"
+                                    type="text"
                                     placeholder="0"
                                     id="brokerage-sales"
-                                    className="form-control p-3"
+                                    className="form-control p-3 input-shadow"
                                     required
                                     min="1"
                                     maxLength="7"
@@ -115,10 +115,10 @@ export default function Brokerage({ Delivery, Intraday }) {
                             <div className="col-md-6">
                                 <label htmlFor="brokerage-raw" className="form-child">Sell</label>
                                 <input
-                                    type="number"
+                                    type="text"
                                     placeholder="0"
                                     id="brokerage-raw"
-                                    className="form-control p-3"
+                                    className="form-control p-3 input-shadow"
                                     required
                                     min="1"
                                     maxLength="7"
@@ -131,10 +131,10 @@ export default function Brokerage({ Delivery, Intraday }) {
                             <div className="col-md-6">
                                 <label htmlFor="brokerage-sales" className="form-child">No. of Shares</label>
                                 <input
-                                    type="number"
+                                    type="text"
                                     placeholder="0"
                                     id="brokerage-sales"
-                                    className="form-control p-3"
+                                    className="form-control p-3 input-shadow"
                                     required
                                     min="1"
                                     maxLength="7"
@@ -147,7 +147,7 @@ export default function Brokerage({ Delivery, Intraday }) {
                                 <label htmlFor="brokerage-raw" className="form-child">Exchange</label>
                                 <select
                                     id="brokerage-raw"
-                                    className="form-select p-3"
+                                    className="form-select p-3 input-shadow"
                                     required
                                     value={exchange}
                                     onChange={(e) => setExchange(e.target.value)}

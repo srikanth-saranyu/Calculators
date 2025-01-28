@@ -154,12 +154,12 @@ export default function EPFCalculator() {
                         </div>
                     </div>
                     <div>
-                        <p className="w-100 p-3 text-center border border-1 rounded-4">Interest Rate is 8.1%</p>
+                        <p className="w-100 p-3 text-center border border-1 rounded-4" style={{ background: '#F9FBFE' }}>Interest Rate is 8.1%</p>
                     </div>
                 </div>
 
                 <div className="col-7 d-flex flex-column border-start">
-                    <div className="text-center mt-4">
+                    <div className="text-center mt-5">
                         <p className="text-dark">Total Accumulation</p>
                         <span className="amount">₹ {Math.round(totalAmount).toLocaleString('en-IN')}</span>
                     </div>

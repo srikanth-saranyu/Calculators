@@ -12,7 +12,7 @@ function formatNumber(value) {
 
 export default function NPVCalculator() {
 
-    const [totalInvestment, setTotalInvestment] = useState(500000);
+    const [totalInvestment, setTotalInvestment] = useState(100000);
     const [discountRate, setDiscountRate] = useState(12);
     const [duration, setDuration] = useState(5);
     const [cashFlows, setCashFlows] = useState([10000, 10000, 10000, 10000, 10000]); // Default cash flows for 5 years
@@ -148,7 +148,7 @@ export default function NPVCalculator() {
                                     </p>
                                 </div>
                             </div>
-                            <input type="range" className="slider" min="500" max="50000" step="1"
+                            <input type="range" className="slider" min="10" max="2000000" step="10"
                                 value={fixedCashFlow}
                                 onChange={(e) => handleFixedCashFlowChange(Number(e.target.value))} />
                             <div className="d-flex justify-content-between">

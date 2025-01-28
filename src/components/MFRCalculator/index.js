@@ -27,7 +27,7 @@ export default function MFRCalculator() {
             <div className="row border rounded custom-width">
 
                 <CalculatorInputs
-                    amountLabel="ENTER AMOUNT"
+                    amountLabel="Total Investment"
                     // amountValue={monthlyInvestment}
                     initialInvestment={initialInvestment}
                     onAmountChange={setMonthlyInvestment}

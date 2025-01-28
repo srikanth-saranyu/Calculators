@@ -88,34 +88,32 @@ export default function GratuityCalculator() {
             <div className="row border rounded gratuity-child">
                 <form className="row d-flex justify-content-between gratuity-form border-bottom ms-0">
                     <div className="col-md-6">
-                        <label htmlFor="gratuity-sales">Monthly Salary (Basic + Dearness allowance)</label>
+                        <label htmlFor="gratuity-sales" className="text-muted">Monthly Salary (Basic + Dearness allowance)</label>
                         <input
                             type="text"
                             placeholder="0"
                             id="gratuity-sales"
-                            className="form-control p-3"
+                            className="form-control p-3 input-shadow"
                             required
                             min="1"
                             maxLength="10"
                             value={formatNumber(salary)}
                             onChange={(e) => handleAmountChange(e, setSalary)}
-
                         />
                     </div>
 
                     <div className="col-md-6">
-                        <label htmlFor="gratuity-raw">Years of Service (Minimum 5 Years)</label>
+                        <label htmlFor="gratuity-raw" className="text-muted">Years of Service (Minimum 5 Years)</label>
                         <input
                             type="text"
                             placeholder="0"
                             id="gratuity-raw"
-                            className="form-control p-3"
+                            className="form-control p-3 input-shadow"
                             required
                             min="0"
                             maxLength="3"
                             value={formatNumber(yearsOfService)}
                             onChange={(e) => handleAmountChange(e, setYearsOfService)}
-
                         />
                     </div>
                 </form>

@@ -26,7 +26,7 @@ export default function SICalculator() {
             <div className="row border rounded custom-width">
 
                 <CalculatorInputs
-                    amountLabel="ENTER AMOUNT"
+                    amountLabel="Principal Amount"
                     // amountValue={principal}
                     initialInvestment={initialInvestment}
                     onAmountChange={setPrincipal}

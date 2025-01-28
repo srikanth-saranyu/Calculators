@@ -25,8 +25,9 @@ export default function GSTCalculator() {
         let originalCost = 0;
 
         if (selectedButton === "GST Exclusive") {
-            gstAmount = initialAmount * gstPercentage;
-            netPrice = initialAmount + gstAmount;
+            gstAmount = Number(initialAmount) * gstPercentage;
+            netPrice = Number(initialAmount) + gstAmount;
+            console.log(netPrice)
             return { gstAmount, netPrice, originalCost: initialAmount, cgst: gstAmount / 2, sgst: gstAmount / 2 };
         }
 
@@ -50,16 +51,16 @@ export default function GSTCalculator() {
                 <div className="gst-calc border-bottom">
                     <p className="fw-medium gst-text">Select GST Type</p>
                     <div className="container">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-12">
-                                <div class="d-flex justify-content-center">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-12">
+                                <div className="d-flex justify-content-center">
                                     <div
                                         className={`button ${selectedButton === "GST Exclusive" ? "selected" : "non-selected"} d-flex col-5 align-items-center justify-content-center p-3 border bg-light rounded-start`}
                                         onClick={() => handleButtonClick("GST Exclusive")}
                                     >
-                                        <p class="d-none">1</p>
+                                        <p className="d-none">1</p>
                                         <span>GST Exclusive</span>
-                                        <i class="info-icon ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="GST Exclusive: Total amount of the product with GST">
+                                        <i className="info-icon ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="GST Exclusive: Total amount of the product with GST">
                                             <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g id="bi:info-circle" clip-path="url(#clip0_405_1563)">
                                                     <g id="Group">
@@ -79,9 +80,9 @@ export default function GSTCalculator() {
                                         className={`button ${selectedButton === "GST Inclusive" ? "selected" : "non-selected"} d-flex col-5 align-items-center justify-content-center p-3 border bg-light rounded-end`}
                                         onClick={() => handleButtonClick("GST Inclusive")}
                                     >
-                                        <p class="d-none">2</p>
+                                        <p className="d-none">2</p>
                                         <span>GST Inclusive</span>
-                                        <i class="info-icon ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="GST Inclusive: Amount of the product without GST">
+                                        <i className="info-icon ms-2" data-bs-toggle="tooltip" data-bs-placement="top" title="GST Inclusive: Amount of the product without GST">
                                             <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g id="bi:info-circle" clip-path="url(#clip0_405_1563)">
                                                     <g id="Group">
@@ -120,9 +121,9 @@ export default function GSTCalculator() {
                             </div>
                         </div>
 
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12">
                                     <label className="fw-medium gst-text">GST Slab</label>
                                     <div className="d-flex align-items-center mt-3 text-muted fw-medium">
                                         {/* Box for each GST slab */}
@@ -145,36 +146,35 @@ export default function GSTCalculator() {
                 <div className="container gst-container mt-5">
                     <div className="row border rounded gst-container-child">
                         <div className="col-md-4 p-4 border-end">
-                            <div className="text-center">
-                                <div className="symbol"></div>
-                                <p className="result-type">Cost of Good/Service</p>
-                                <p className="gst-amount">
-                                    <span>₹</span>
-                                    <span className="total-cost-service">{Math.round(originalCost).toLocaleString('en-IN')}</span>
-                                </p>
-
-                            </div>
+                            <p className="text-center result-type">Cost of Good/Service</p>
+                            <p className="gst-amount text-center">
+                                <span>₹</span>
+                                <span className="total-cost-service">{Math.round(originalCost).toLocaleString('en-IN')}</span>
+                            </p>
                         </div>
 
                         <div className="col-md-4 p-4 border-end ">
-                            <div className="text-center">
-                                <div className="symbol equal-symbol"></div>
-                                <p className="result-type">Total GST*</p>
-                                <p className="gst-amount">
-                                    <span>₹</span>
-                                    <span className="total-gst">{Math.round(gstAmount).toLocaleString('en-IN')}</span>
-                                </p>
+                            <div className="plus-symbol">
+                                <div className="d-flex justify-content-center align-items-center d-inline-block rounded-circle border fw-bold symbol shadow">
+                                    +</div>
                             </div>
+                            <p className="text-center result-type">Total GST*</p>
+                            <p className="gst-amount text-center">
+                                <span>₹</span>
+                                <span className="total-gst">{Math.round(gstAmount).toLocaleString('en-IN')}</span>
+                            </p>
                         </div>
 
                         <div className="col-md-4 p-4">
-                            <div className="text-center">
-                                <p className="result-type">Total Selling Price</p>
-                                <p className="gst-amount">
-                                    <span>₹</span>
-                                    <span className="total-selling-price">{Math.round(netPrice).toLocaleString('en-IN')}</span>
-                                </p>
+                            <div className="plus-symbol">
+                                <div className="d-flex justify-content-center align-items-center d-inline-block rounded-circle border fw-bold symbol shadow">
+                                    =</div>
                             </div>
+                            <p className="text-center result-type">Total Selling Price</p>
+                            <p className="gst-amount text-center">
+                                <span>₹</span>
+                                <span className="total-selling-price">{Math.round(netPrice).toLocaleString('en-IN')}</span>
+                            </p>
                         </div>
                     </div>
                     <p className="gst-info fw-medium gst-text mt-3">*Total GST: <b className="bold-txt" id="cgst">₹{Math.round(cgst).toLocaleString('en-IN')}</b> (CGST) + <b className="bold-txt" id="sgst">₹{Math.round(sgst).toLocaleString('en-IN')}</b> (SGST)</p>

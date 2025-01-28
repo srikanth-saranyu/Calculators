@@ -5,7 +5,7 @@ import CalculatorInputs from '../CalculatorInputs'
 
 export default function LumpsumCalculator() {
     const initialInvestment = 5000;
-    const [lumpsumInvestment, setLumpsumInvestment] = useState(50000);
+    const [lumpsumInvestment, setLumpsumInvestment] = useState(5000);
     const [duration, setDuration] = useState(5);
     const [rateOfReturn, setRateOfReturn] = useState(12);
 
@@ -46,7 +46,7 @@ export default function LumpsumCalculator() {
 
                 <div className="col-7 d-flex flex-column border-start">
                     <div className="text-center mt-4">
-                        <p className="text-dark">The total value of your investment after<span className="selected-years">&nbsp;{duration} years</span> will be</p>
+                        <p className="text-dark">The total value of your investment after<b><span className="selected-years">&nbsp;{duration} years</span></b> will be</p>
                         <span className="amount">₹ {Math.round(totalAmount).toLocaleString('en-IN')}</span>
                     </div>
                     <div className="d-flex flex-row justify-content-center">

@@ -23,12 +23,15 @@ export default function TDSCalculator() {
         setErrorMessage("");
         let tdsRate = 0;
 
-        if (natureOfPayment === "salary") {
-            // For salary payment (Example: 12% tax rate)
-            tdsRate = 0.12;
+        if (natureOfPayment === "Section 192A - Payment of accumulated PF balance to an employee") {
+            // For salary payment (Example: 10% tax rate)
+            tdsRate = 0.10;
         } else if (natureOfPayment === "interest") {
             // For interest payment (Example: 10% tax rate)
             tdsRate = 0.10;
+        } else if (natureOfPayment === "commission") {
+            // For commission payment (Example: 5% tax rate)
+            tdsRate = 0.05;
         } else if (natureOfPayment === "commission") {
             // For commission payment (Example: 5% tax rate)
             tdsRate = 0.05;
@@ -36,10 +39,9 @@ export default function TDSCalculator() {
 
         // Compute the basic TDS
         let baseTDS = paymentAmount * tdsRate;
-
+        console.log(tdsRate)
         // Applying cess (4% education cess)
         let totalTDS = baseTDS * 1.04; // Adding 4% education cess
-
         // Set the result state
         setTdsAmount(totalTDS);
     };
@@ -87,7 +89,7 @@ export default function TDSCalculator() {
                         <label htmlFor="nature-of-payment" className="mt-4 form-label text-muted">Nature of Payment / Section</label>
                         <select
                             id="nature-of-payment"
-                            className="form-select p-3"
+                            className="form-select p-3 input-shadow"
                             required
                             // value={exchange}
                             onChange={(e) => setNatureOfPayment(e.target.value)}

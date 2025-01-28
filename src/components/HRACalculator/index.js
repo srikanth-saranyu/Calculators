@@ -60,7 +60,7 @@ export default function HRACalculator() {
                                 type="text"
                                 placeholder="0"
                                 id="basic-salary"
-                                className="form-control p-3"
+                                className="form-control p-3 input-shadow"
                                 required
                                 min="1"
                                 maxLength="7"
@@ -75,7 +75,7 @@ export default function HRACalculator() {
                                 type="text"
                                 placeholder="0"
                                 id="dearness-allowance"
-                                className="form-control p-3"
+                                className="form-control p-3 input-shadow"
                                 required
                                 min="0"
                                 maxLength="7"
@@ -91,7 +91,7 @@ export default function HRACalculator() {
                                 type="text"
                                 placeholder="0"
                                 id="hra-received"
-                                className="form-control p-3"
+                                className="form-control p-3 input-shadow"
                                 required
                                 min="1"
                                 maxLength="7"
@@ -107,7 +107,7 @@ export default function HRACalculator() {
                                 type="text"
                                 placeholder="0"
                                 id="rent-paid"
-                                className="form-control p-3"
+                                className="form-control p-3 input-shadow"
                                 required
                                 min="1"
                                 maxLength="7"
@@ -138,7 +138,7 @@ export default function HRACalculator() {
                 </div>
 
                 <div className="col-7 d-flex flex-column border-start">
-                    <div className="text-center mt-4">
+                    <div className="text-center mt-5">
                         <p className="text-dark mb-0">Taxable HRA</p>
                         <span className="amount">₹{Math.round(taxableHRA).toLocaleString('en-IN')}</span>
                     </div>

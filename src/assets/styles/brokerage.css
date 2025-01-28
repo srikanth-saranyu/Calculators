@@ -43,10 +43,33 @@ table.charges-table th:last-child {
     width: 60%;
 }
 
-.margin-table {
+.margin-table th {
     font-size: 15px;
     line-height: 30px;
     color: #777d87;
-    font-weight: normal !important;
+    font-weight: 400;
+    background-color: #f9f9f9
 }
 
+.margin-table tr {
+    font-size: 15px;
+    line-height: 30px;
+    color: #777d87;
+    font-weight: 400;
+    background-color: #f9f9f9;
+}
+
+.margin-table-body td {
+    font-size: 15px;
+    line-height: 30px;
+    font-weight: 400;
+    padding: 15px;
+}
+
+
+
+select:disabled {
+    background-color: white !important;
+    cursor: not-allowed;
+    color: grey;
+}

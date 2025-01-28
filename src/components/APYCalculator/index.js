@@ -3,14 +3,14 @@ import React, { useState, useEffect } from "react";
 
 export default function APYCalculator() {
 
-    const [age, setAge] = useState(25); 
-    const [monthlyPension, setMonthlyPension] = useState(1000); 
+    const [age, setAge] = useState(25);
+    const [monthlyPension, setMonthlyPension] = useState(1000);
     const [apy, setApy] = useState(0);
     const [finalValue, setFinalValue] = useState(0);
     const [monthlyContribution, setMonthlyContribution] = useState(0);
 
     const compoundingFrequency = 12;
-    const investmentDuration = 60 - age; 
+    const investmentDuration = 60 - age;
     const rateOfInterest = 0.08;
 
     const calculateAPY = (r, n) => {
@@ -18,48 +18,48 @@ export default function APYCalculator() {
     };
 
     // Function to calculate final accumulated value based on monthly contributions
-  const calculateFinalValue = (monthlyContribution, rateOfInterest, compoundingFrequency, duration) => {
-    const months = duration * 12; 
-    const monthlyRate = rateOfInterest / 12; 
-    let totalAmount = 0;
+    const calculateFinalValue = (monthlyContribution, rateOfInterest, compoundingFrequency, duration) => {
+        const months = duration * 12;
+        const monthlyRate = rateOfInterest / 12;
+        let totalAmount = 0;
 
-    // Compound the monthly contributions over time
-    for (let month = 1; month <= months; month++) {
-      totalAmount += monthlyContribution * Math.pow(1 + monthlyRate, months - month);
-    }
+        // Compound the monthly contributions over time
+        for (let month = 1; month <= months; month++) {
+            totalAmount += monthlyContribution * Math.pow(1 + monthlyRate, months - month);
+        }
 
-    return totalAmount;
-  };
+        return totalAmount;
+    };
 
-  // Function to calculate the monthly contribution required to reach the desired pension
-  const calculateMonthlyContribution = (desiredPension, rateOfInterest, duration) => {
-    const months = duration * 12; 
-    const monthlyRate = rateOfInterest / 12; 
-    let totalContribution = 0;
-    let finalAmount = 0;
+    // Function to calculate the monthly contribution required to reach the desired pension
+    const calculateMonthlyContribution = (desiredPension, rateOfInterest, duration) => {
+        const months = duration * 12;
+        const monthlyRate = rateOfInterest / 12;
+        let totalContribution = 0;
+        let finalAmount = 0;
 
-    // Iteratively calculate until we reach the target amount for desired pension
-    while (finalAmount < desiredPension * 12) {
-      totalContribution += 1; 
-      finalAmount = calculateFinalValue(totalContribution, rateOfInterest, compoundingFrequency, duration);
-    }
+        // Iteratively calculate until we reach the target amount for desired pension
+        while (finalAmount < desiredPension * 12) {
+            totalContribution += 1;
+            finalAmount = calculateFinalValue(totalContribution, rateOfInterest, compoundingFrequency, duration);
+        }
 
-    return totalContribution;
-  };
+        return totalContribution;
+    };
 
-  // Update the APY, Monthly Contribution, and Final Value whenever inputs change
-  useEffect(() => {
-    const calculatedAPY = calculateAPY(rateOfInterest, compoundingFrequency);
-    setApy(calculatedAPY * 100); 
+    // Update the APY, Monthly Contribution, and Final Value whenever inputs change
+    useEffect(() => {
+        const calculatedAPY = calculateAPY(rateOfInterest, compoundingFrequency);
+        setApy(calculatedAPY * 100);
 
-    // Calculate the required monthly contribution to meet the desired pension
-    const requiredMonthlyContribution = calculateMonthlyContribution(monthlyPension, rateOfInterest, investmentDuration);
-    setMonthlyContribution(requiredMonthlyContribution);
+        // Calculate the required monthly contribution to meet the desired pension
+        const requiredMonthlyContribution = calculateMonthlyContribution(monthlyPension, rateOfInterest, investmentDuration);
+        setMonthlyContribution(requiredMonthlyContribution);
 
-    // Calculate the final accumulated value of the investment
-    const finalAmount = calculateFinalValue(requiredMonthlyContribution, rateOfInterest, compoundingFrequency, investmentDuration);
-    setFinalValue(finalAmount); 
-  }, [monthlyPension, age, investmentDuration]);
+        // Calculate the final accumulated value of the investment
+        const finalAmount = calculateFinalValue(requiredMonthlyContribution, rateOfInterest, compoundingFrequency, investmentDuration);
+        setFinalValue(finalAmount);
+    }, [monthlyPension, age, investmentDuration]);
 
 
     return (
@@ -91,7 +91,7 @@ export default function APYCalculator() {
                             <label className="text-dark">Expected Monthly Pension</label>
                             <div className="d-flex align-items-baseline border-bottom border-1 mb-1">
                                 <p className="d-flex align-items-baseline mb-0">
-                                    <span className="fs-3 text-dark">₹</span>
+                                    <span className="fs-6 text-dark">₹</span>
                                     <span className="fs-3 text ms-1">{monthlyPension}</span>
                                 </p>
                             </div>

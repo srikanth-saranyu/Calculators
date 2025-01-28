@@ -23,6 +23,12 @@
     padding: 12px;
   }
 
+  .input-shadow:focus {
+    outline: none; /* Remove the default focus outline */
+    border: 1px solid #e0e0ec; /* You can set your desired border color */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add shadow effect on focus */
+}
+
   .gratuity-child {
     width: 800px;
     margin-left: 10px;

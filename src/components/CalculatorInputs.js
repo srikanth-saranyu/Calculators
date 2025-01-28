@@ -45,8 +45,8 @@ const CalculatorInputs = ({
       </p>
       <div className="border border-2 border-primary rounded input-field">
         <label className="d-block text-center">{amountLabel}</label>
-        <div className="d-flex justify-content-center align-items-center ms-5">
-          <span className="fs-6">₹</span>
+        <div className="d-flex justify-content-center align-items-start ms-5">
+          <span className="fs-5">₹</span>
           <input
             type="text"
             className="input-number fs-2 bg-transparent border-0 text-dark text-start ps-2"
@@ -69,7 +69,7 @@ const CalculatorInputs = ({
             </p>
           </div>
         </div>
-        <input
+       <input
           type="range"
           className="slider"
           min={minDuration}
@@ -99,7 +99,7 @@ const CalculatorInputs = ({
           className="slider"
           min={minRate}
           max={maxRate}
-          step="1"
+          step="0.5"
           value={rateValue}
           onChange={(e) => onRateChange(Number(e.target.value))}
         />

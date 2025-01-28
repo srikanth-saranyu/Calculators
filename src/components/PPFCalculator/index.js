@@ -58,7 +58,7 @@ export default function PPFCalculator() {
                     <div className="border border-2 border-primary rounded input-field">
                         <label className="d-block text-center">Total Investment(Yearly)</label>
                         <div className="ms-5 d-flex justify-content-center align-items-start">
-                            <span className="fs-6">₹</span>
+                            <span className="fs-5">₹</span>
                             <input type="text" className="input-number fs-1 bg-transparent border-0 text-dark text-start"
                                 placeholder="0"
                                 maxLength={10}
@@ -71,9 +71,9 @@ export default function PPFCalculator() {
                     <div className="w-100 mt-3">
                         <div className="d-flex justify-content-between align-items-center">
                             <label className="text-dark">Interest rate</label>
-                            <div className="d-flex align-items-baseline mb-1 pb-1">
-                                <p className="disabled-input align-items-baseline mb-0 p-2 border border-0">
-                                    <span className="fs-3 text-dark fw-bold">7.1</span>
+                            <div className="d-flex justify-content-center" style={{ width: 80 }}>
+                                <p className="disabled-input mb-0 py-1 ps-3 border border-0">
+                                    <span className="text-center fs-3 text-dark fw-bold">7.1</span>
                                     <span>%</span>
                                 </p>
                             </div>

@@ -109,8 +109,24 @@
 }
 
 #nature-of-payment option {
-  padding: 10px; /* Space between options */
-  font-size: 16px; /* Font size for the options */
+  padding: 10px; 
+  font-size: 16px; 
   height: 25px;
 }
   
+.symbol {
+  font-size: 14px;
+  width: 25px; 
+  height: 25px;
+  position: absolute;
+  background-color: white;
+}
+
+.plus-symbol {
+  
+  position: relative;
+    right: 37px; 
+    top: 40%;
+    transform: translateY(-50%);
+}
+

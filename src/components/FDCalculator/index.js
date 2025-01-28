@@ -29,7 +29,7 @@ export default function FDCalculator() {
             <div className="row border rounded custom-width">
 
                 <CalculatorInputs
-                    amountLabel="ENTER AMOUNT"
+                    amountLabel="Total Investment"
                     // amountValue={principal}
                     initialInvestment={initialInvestment}
                     onAmountChange={setPrincipal}
