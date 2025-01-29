@@ -5,45 +5,36 @@ export default function TDSCalculator() {
 
 
     const [paymentAmount, setPaymentAmount] = useState(100000);
-    const [natureOfPayment, setNatureOfPayment] = useState("194A-interest from banks");
+    const [natureOfPayment, setNatureOfPayment] = useState("Section 192A - Payment of accumulated PF balance to an employee");
     const [recipientType, setRecipientType] = useState("individual");
     const [panAvailable, setPanAvailable] = useState("yes");
     const [tdsAmount, setTdsAmount] = useState(null);
-    const [errorMessage, setErrorMessage] = useState("");
     const [displayValue, setDisplayValue] = useState(formatNumber(paymentAmount));
 
     // Function to handle calculation
     const calculateTDS = () => {
-
-        if (isNaN(paymentAmount) || paymentAmount <= 0) {
-            setErrorMessage("Please enter a valid payment amount.");
-            return;
-        }
-
-        setErrorMessage("");
         let tdsRate = 0;
 
         if (natureOfPayment === "Section 192A - Payment of accumulated PF balance to an employee") {
-            // For salary payment (Example: 10% tax rate)
+            // For Section 192A (Example: 10% tax rate)
+            tdsRate += 0.10;
+        } else if (natureOfPayment === "Section 193 - Interest on Securities") {
+            // For Section 193 (Example: 10% tax rate)
             tdsRate = 0.10;
-        } else if (natureOfPayment === "interest") {
-            // For interest payment (Example: 10% tax rate)
+        } else if (natureOfPayment === "Section 194 - Dividend other than the Dividend as referred to in & Section 115-O") {
+            // For Section 194 (Example: 10% tax rate)
             tdsRate = 0.10;
-        } else if (natureOfPayment === "commission") {
-            // For commission payment (Example: 5% tax rate)
-            tdsRate = 0.05;
-        } else if (natureOfPayment === "commission") {
-            // For commission payment (Example: 5% tax rate)
-            tdsRate = 0.05;
+        } else if (natureOfPayment === "Section 194A - Interest other than Banks") {
+            // For Section 194A (Example: 10% tax rate)
+            tdsRate = 0.10;
         }
 
         // Compute the basic TDS
         let baseTDS = paymentAmount * tdsRate;
-        console.log(tdsRate)
         // Applying cess (4% education cess)
-        let totalTDS = baseTDS * 1.04; // Adding 4% education cess
+        // let totalTDS = baseTDS * 1.04; // Adding 4% education cess
         // Set the result state
-        setTdsAmount(totalTDS);
+        setTdsAmount(baseTDS);
     };
 
     // Format number function
@@ -156,6 +147,9 @@ export default function TDSCalculator() {
                         <div className="p-4 text-center">
                             <p className="m-0 text-dark p-2">Total Applicable TDS</p>
                             <span className="fs-3 fw-bold">₹ {tdsAmount}</span>
+                            {panAvailable === 'no' && (
+                                <p>(In case Pan is not available TDS will be applicable at higher rates)</p>
+                            )}
                         </div>
                     </div>
                 )}

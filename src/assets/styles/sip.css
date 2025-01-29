@@ -84,8 +84,9 @@ input[type="range"]::-moz-range-progress {
 
   .slider {
     width: 455px;
-    background: linear-gradient(to right, #3f5bd9 0%, #3f5bd9 16.7%, #E3EBF6 16.7%, #E3EBF6 100%) !important;
+    background: linear-gradient(to right, #3f5bd9 0%, #3f5bd9 16.7%, #E3EBF6 16.7%, #E3EBF6 100%);
   }
+
 
   .disabled-input {
     background-color: #efefef;
